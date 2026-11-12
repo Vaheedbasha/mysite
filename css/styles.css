@@ -1111,11 +1111,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .process-list::after {
   content: "";
   position: absolute;
-  top: 2.45rem;
-  left: 2.5%;
-  right: 2.5%;
+  /* Runs through the badge row and stops at the first and last badge centre,
+     so the numbered circles sit on top of it. */
+  top: 1.15rem;
+  left: 1.15rem;
+  right: calc(20% - 1.15rem);
   height: 1px;
   border-radius: 1px;
+  z-index: 0;
 }
 .process-list::before { background: var(--border); }
 .process-list::after {
@@ -1134,6 +1137,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   position: absolute;
   top: -2.4rem;
   left: 0;
+  z-index: 1;
   display: grid;
   place-items: center;
   width: 2.3rem;
