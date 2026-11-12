@@ -1115,7 +1115,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
      so the numbered circles sit on top of it. */
   top: 1.15rem;
   left: 1.15rem;
-  right: calc(20% - 1.15rem);
+  right: calc(20% - 2.15rem);
   height: 1px;
   border-radius: 1px;
   z-index: 0;
