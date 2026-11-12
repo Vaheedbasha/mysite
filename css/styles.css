@@ -449,6 +449,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .logo:hover { opacity: 0.7; }
 .logo-dot { color: var(--accent); }
+.logo-accent { color: var(--accent); font-weight: 600; }
 
 .nav-list {
   display: flex;
@@ -586,6 +587,30 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 .hero h1 { margin-bottom: var(--space-4); }
+
+.name-accent {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.hero-intro {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.name-support {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-6);
+  transition: color var(--dur) var(--ease);
+}
+
+.name-accent:hover {
+  color: color-mix(in srgb, var(--accent), transparent 20%);
+}
 
 .hero-sub {
   font-family: var(--font-body);
@@ -1578,6 +1603,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .js .hero-enter[data-delay="3"] { animation-delay: 0.22s; }
 .js .hero-enter[data-delay="4"] { animation-delay: 0.28s; }
 .js .hero-enter[data-delay="5"] { animation-delay: 0.34s; }
+.js .hero-enter[data-delay="6"] { animation-delay: 0.40s; }
+.js .hero-enter[data-delay="7"] { animation-delay: 0.46s; }
 @keyframes heroIn {
   to { opacity: 1; transform: none; }
 }
