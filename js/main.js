@@ -11,8 +11,9 @@
    7.  Active nav link while scrolling
    8.  Scroll-reveal animations
    9.  Animated counters
-   10. Back to top
-   11. Contact form (validation, fetch, token)
+   10. Expand live sites
+   11. Back to top
+   12. Contact form (validation, fetch, token)
    --------------------------------------------------------------------------
    Everything degrades gracefully: if a feature cannot run, the page still
    works because the full content is already in index.html.
@@ -54,6 +55,9 @@
 
   var IMG_FALLBACK = ' onerror="this.remove()"';
 
+  // Live cards shown before the "Show more" button reveals the rest.
+  var VISIBLE_LIVE = 3;
+
   /* ======================================================================
      2. CONTENT RENDERING
      ----------------------------------------------------------------------
@@ -61,30 +65,58 @@
      with the same structure built from SITE. If config.js is missing or a
      list is empty, the fallback markup stays untouched.
      ====================================================================== */
-  function chips(tags) {
+  /* Technology chips: the brand mark always shows, the name appears on hover.
+     The SVG symbols live in the sprite at the top of index.html. */
+  var TECH = {
+    html: { cls: "tech-html5", symbol: "i-html5", label: "HTML5" },
+    css: { cls: "tech-css3", symbol: "i-css3", label: "CSS3" },
+    js: { cls: "tech-javascript", symbol: "i-javascript", label: "JavaScript" },
+    php: { cls: "tech-php", symbol: "i-php", label: "PHP" },
+    mysql: { cls: "tech-mysql", symbol: "i-mysql", label: "MySQL" },
+    seo: { cls: "tech-seo", symbol: "i-seo", label: "SEO" }
+  };
+
+  function techKey(tag) {
+    var name = String(tag).toLowerCase();
+    if (name === "html5") return "html";
+    if (name === "css3") return "css";
+    if (name === "javascript") return "js";
+    return TECH[name] ? name : "";
+  }
+
+  function techItem(tag) {
+    var key = techKey(tag);
+    if (!key) {
+      return '<li class="tech tech-generic"><span class="tech-name">' + esc(tag) + "</span></li>";
+    }
+    var t = TECH[key];
+    return '<li class="tech ' + t.cls + '">' +
+      '<svg class="tech-logo" aria-hidden="true"><use href="#' + t.symbol + '"></use></svg>' +
+      '<span class="tech-name">' + t.label + "</span>" +
+    "</li>";
+  }
+
+  function techRow(tags) {
     if (!tags || !tags.length) return "";
-    return '<ul class="chips" aria-label="Technologies used">' +
-      tags.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
-      "</ul>";
+    return '<ul class="tech-row" aria-label="Technologies used">' +
+      tags.map(techItem).join("") +
+    "</ul>";
   }
 
   function imgPath(project) {
     return "images/projects/" + project.slug + ".webp";
   }
 
-  function renderFeatured(project) {
-    var c = project.case || {};
-    var caseHtml = "";
-    if (c.challenge || c.built || c.result) {
-      caseHtml = '<dl class="case">' +
-        (c.challenge ? "<div><dt>Challenge</dt><dd>" + esc(c.challenge) + "</dd></div>" : "") +
-        (c.built ? "<div><dt>What I built</dt><dd>" + esc(c.built) + "</dd></div>" : "") +
-        (c.result ? "<div><dt>Result</dt><dd>" + esc(c.result) + "</dd></div>" : "") +
-        "</dl>";
-    }
+  /* One card design for everything: live sites and demos. */
+  function renderCard(project, extra) {
+    var isDemo = project.kind === "demo";
+    var badge = isDemo
+      ? '<span class="shot-badge">' + esc(project.badge || "Demo build") + "</span>"
+      : '<span class="shot-badge shot-badge-live"><span class="pulse-dot" aria-hidden="true"></span>Live</span>';
+    var linkText = isDemo ? (project.linkLabel || "Open demo") : "Visit live site";
 
-    return '<article class="proj reveal" data-type="' + esc(project.type) + '">' +
-      '<div class="shot">' +
+    return '<article class="proj' + (extra ? " is-extra" : " reveal") + '">' +
+      '<div class="shot">' + badge +
         '<div class="shot-fallback" aria-hidden="true">' +
           '<span class="shot-frame-bar"><i></i><i></i><i></i></span>' +
           '<span class="shot-fallback-name">' + esc(project.name) + "</span>" +
@@ -94,15 +126,11 @@
           ' width="1600" height="1000" loading="lazy" decoding="async"' + IMG_FALLBACK + ">" +
       "</div>" +
       '<div class="proj-body">' +
-        '<p class="proj-meta"><span class="proj-cat">' + esc(project.category) + "</span>" +
-          '<span class="sep" aria-hidden="true">·</span><span>' + esc(project.status || "Live") + "</span></p>" +
         "<h3>" + esc(project.name) + "</h3>" +
         "<p>" + esc(project.description) + "</p>" +
-        chips(project.tags) +
-        (project.role ? '<p class="proj-role"><span>My role:</span> ' + esc(project.role) + "</p>" : "") +
-        caseHtml +
+        techRow(project.tags) +
         '<a class="btn btn-ghost proj-link" href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer">' +
-          "Visit live site" + arrowSvg +
+          esc(linkText) + arrowSvg +
         "</a>" +
       "</div>" +
     "</article>";
@@ -112,46 +140,11 @@
     return name.split(/\s+/).map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
   }
 
-  function renderMini(project) {
-    return '<article class="mini reveal" data-type="' + esc(project.type) + '">' +
-      '<div class="mini-thumb">' +
-        '<img src="' + esc(imgPath(project)) + '" alt="' + esc(project.imageAlt || project.name) + '"' +
-          ' width="800" height="500" loading="lazy" decoding="async"' + IMG_FALLBACK + ">" +
-        '<span class="mini-initial" aria-hidden="true">' + esc(initials(project.name)) + "</span>" +
-      "</div>" +
-      '<div class="mini-body">' +
-        "<h4>" + esc(project.name) + "</h4>" +
-        "<p>" + esc(project.description) + "</p>" +
-        '<a class="text-link" href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer"' +
-          ' aria-label="Visit the ' + esc(project.name) + ' website (opens in a new tab)">' +
-          "Visit site" + '<span aria-hidden="true"> →</span>' +
-        "</a>" +
-      "</div>" +
-    "</article>";
-  }
-
-  function renderDemo(project) {
-    var isSoon = /soon/i.test(project.badge || "");
-    return '<article class="demo reveal" data-type="' + esc(project.type) + '">' +
-      '<div class="demo-head">' +
-        '<span class="badge ' + (isSoon ? "badge-soon" : "badge-demo") + '">' + esc(project.badge || "Demo build") + "</span>" +
-        '<span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>' +
-      "</div>" +
-      "<h4>" + esc(project.name) + "</h4>" +
-      "<p>" + esc(project.description) + "</p>" +
-      chips(project.tags) +
-      '<a class="text-link" href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer"' +
-        ' aria-label="' + esc(project.linkLabel || "Open demo") + " — " + esc(project.name) + ' (opens in a new tab)">' +
-        esc(project.linkLabel || "Open demo") + '<span aria-hidden="true"> →</span>' +
-      "</a>" +
-    "</article>";
-  }
-
   var SERVICE_ICONS = {
     monitor: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
     layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
     code: '<path d="m15 18 5-5-5-5"/><path d="m9 6-5 5 5 5"/>',
-    wrench: '<path d="M14.7 6.3a4 4 0 0 0 5.1 5.1l-8.9 8.9a2.5 2.5 0 0 1-3.5-3.5l8.9-8.9"/><path d="M17.5 3.5 21 7"/>'
+    wrench: '<path d="M15.6 3.6a5.2 5.2 0 0 0-6.8 6.4l-5.2 5.2a2.6 2.6 0 0 0 3.7 3.7l5.2-5.2a5.2 5.2 0 0 0 6.4-6.8L16 10.4l-2.4-2.4 2-2z"/>'
   };
 
   function serviceIcon(name) {
@@ -194,18 +187,20 @@
   function renderAll() {
     var projects = Array.isArray(SITE.projects) ? SITE.projects : [];
     if (projects.length) {
-      var featured = projects.filter(function (p) { return p.kind === "featured"; });
-      var more = projects.filter(function (p) { return p.kind === "more"; });
+      var live = projects.filter(function (p) { return p.kind !== "demo"; });
       var demos = projects.filter(function (p) { return p.kind === "demo"; });
 
-      var featuredBox = $("#work-featured");
-      if (featuredBox && featured.length) featuredBox.innerHTML = featured.map(renderFeatured).join("");
-
-      var moreBox = $("#work-more");
-      if (moreBox && more.length) moreBox.innerHTML = more.map(renderMini).join("");
+      var liveBox = $("#work-live");
+      if (liveBox && live.length) {
+        liveBox.innerHTML = live.map(function (p, i) {
+          return renderCard(p, i >= VISIBLE_LIVE);
+        }).join("");
+      }
 
       var demoBox = $("#work-demos");
-      if (demoBox && demos.length) demoBox.innerHTML = demos.map(renderDemo).join("");
+      if (demoBox && demos.length) {
+        demoBox.innerHTML = demos.map(function (p) { return renderCard(p, false); }).join("");
+      }
     }
 
     var servicesBox = $("#services-grid");
@@ -415,7 +410,7 @@
     }
 
     // Small stagger inside grids so cards arrive one after another.
-    [".work-grid", ".mini-grid", ".demo-grid", ".services-grid", ".testimonials-grid",
+    [".work-grid", ".services-grid", ".testimonials-grid",
      ".process-list", ".highlight-row"].forEach(function (groupSel) {
       $$(groupSel).forEach(function (group) {
         $$(".reveal", group).forEach(function (el, i) {
@@ -504,7 +499,30 @@
   }
 
   /* ======================================================================
-     10. BACK TO TOP
+     10. EXPAND LIVE SITES
+     ====================================================================== */
+  function initWorkToggle() {
+    var btn = $("#work-toggle");
+    var grid = $("#work-live");
+    if (!btn || !grid) return;
+
+    if (!$$(".is-extra", grid).length) {
+      var wrap = $("#work-more-wrap");
+      if (wrap) wrap.hidden = true;
+      return;
+    }
+
+    var label = $(".btn-label", btn);
+    btn.addEventListener("click", function () {
+      var open = grid.classList.toggle("is-expanded");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.classList.toggle("is-open", open);
+      if (label) label.textContent = open ? "Show fewer live sites" : "Show more live sites";
+    });
+  }
+
+  /* ======================================================================
+     11. BACK TO TOP
      ====================================================================== */
   function initBackToTop() {
     var btn = $("#to-top");
@@ -528,7 +546,7 @@
   }
 
   /* ======================================================================
-     11. CONTACT FORM
+     12. CONTACT FORM
      ----------------------------------------------------------------------
      - validates in the browser with friendly inline messages
      - posts JSON via fetch() to contact.php
@@ -671,6 +689,7 @@
      ====================================================================== */
   function init() {
     renderAll();
+    initWorkToggle();
     applyContactDetails();
     initTheme();
     initHeaderState();
