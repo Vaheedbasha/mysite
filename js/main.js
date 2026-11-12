@@ -459,6 +459,69 @@
   }
 
   /* ======================================================================
+     8c. HERO PORTRAIT — parallax and missing-asset fallback
+     ----------------------------------------------------------------------
+     A small pointer-driven tilt on the portrait. Pointer-fine devices only,
+     and never when the visitor prefers reduced motion.
+     ====================================================================== */
+  function initHeroPortrait() {
+    var figure = $(".hero-portrait");
+    var img = $(".portrait-img");
+    if (!figure || !img) return;
+
+    // Optimised WebP first, the uploaded PNG next, themed fallback last.
+    function onError() {
+      var fallback = img.getAttribute("data-fallback");
+      if (fallback && img.getAttribute("src") !== fallback) {
+        img.setAttribute("src", fallback);
+        return;
+      }
+      figure.classList.add("no-portrait");
+    }
+
+    img.addEventListener("error", onError);
+    if (img.complete && img.naturalWidth === 0) onError();
+
+    var layer = $("[data-parallax='portrait']");
+    var hero = $(".hero");
+    if (!layer || !hero || reduceMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    var raf = null;
+    var tx = 0, ty = 0, cx = 0, cy = 0;
+
+    function clamp(n) { return Math.max(-1, Math.min(1, n)); }
+
+    function apply() {
+      raf = null;
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      layer.style.transform =
+        "perspective(1100px) rotateY(" + (cx * 5).toFixed(2) + "deg)" +
+        " rotateX(" + (-cy * 4).toFixed(2) + "deg)" +
+        " translate3d(" + (cx * 8).toFixed(2) + "px," + (cy * 6).toFixed(2) + "px,0)";
+      if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
+        raf = window.requestAnimationFrame(apply);
+      }
+    }
+
+    function onMove(e) {
+      var r = hero.getBoundingClientRect();
+      tx = clamp(((e.clientX - r.left) / r.width - 0.5) * 2);
+      ty = clamp(((e.clientY - r.top) / r.height - 0.5) * 2);
+      if (raf === null) raf = window.requestAnimationFrame(apply);
+    }
+
+    function onLeave() {
+      tx = 0; ty = 0;
+      if (raf === null) raf = window.requestAnimationFrame(apply);
+    }
+
+    hero.addEventListener("pointermove", onMove, { passive: true });
+    hero.addEventListener("pointerleave", onLeave);
+  }
+
+  /* ======================================================================
      9. COUNTERS
      ====================================================================== */
   function initCounters() {
@@ -696,6 +759,7 @@
     initNav();
     initScrollSpy();
     initReveal();
+    initHeroPortrait();
     initProcessLine();
     initCounters();
     initBackToTop();
