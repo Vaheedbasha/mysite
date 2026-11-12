@@ -261,10 +261,13 @@
     var toggle = $("#theme-toggle");
     if (!toggle) return;
 
+    // The switch reports the state it is in: checked = dark, unchecked = light.
     function label() {
       var isDark = root.getAttribute("data-theme") === "dark";
-      toggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
-      toggle.setAttribute("aria-pressed", isDark ? "false" : "true");
+      var next = isDark ? "Switch to light mode" : "Switch to dark mode";
+      toggle.setAttribute("aria-checked", isDark ? "true" : "false");
+      toggle.setAttribute("aria-label", next);
+      toggle.setAttribute("title", next);
     }
     label();
 
