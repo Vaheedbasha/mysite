@@ -498,10 +498,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Premium pill switch. Dark: charcoal track, white knob left, moon right.
    Light: ivory track, charcoal knob right, sun left. One switch, two states. */
 .theme-switch {
-  --sw-w: 82px;
-  --sw-h: 42px;
-  --sw-knob: 34px;
-  --sw-pad: 4px;
+  --sw-w: 76px;
+  --sw-h: 38px;
+  --sw-knob: 30px;
+  --sw-pad: 5px;
   position: relative;
   flex: none;
   width: var(--sw-w);
@@ -567,7 +567,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
               background-color 400ms var(--ease), box-shadow 400ms var(--ease);
 }
 [data-theme="dark"] .theme-switch-knob {
-  transform: translateX(0);
+  transform: translateX(8px);
   background: #ffffff;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.55);
 }
@@ -580,6 +580,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 @media (max-width: 420px) {
   .theme-switch { --sw-w: 72px; --sw-h: 38px; --sw-knob: 30px; }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .theme-switch, .theme-switch-knob, .theme-switch-icon { transition: none; }
 }
