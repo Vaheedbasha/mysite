@@ -11,9 +11,8 @@
    7.  Active nav link while scrolling
    8.  Scroll-reveal animations
    9.  Animated counters
-   10. Project filters
-   11. Back to top
-   12. Contact form (validation, fetch, token)
+   10. Back to top
+   11. Contact form (validation, fetch, token)
    --------------------------------------------------------------------------
    Everything degrades gracefully: if a feature cannot run, the page still
    works because the full content is already in index.html.
@@ -505,33 +504,7 @@
   }
 
   /* ======================================================================
-     10. PROJECT FILTERS
-     ====================================================================== */
-  function initFilters() {
-    var buttons = $$(".filter-btn");
-    if (!buttons.length) return;
-
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var filter = btn.getAttribute("data-filter");
-
-        buttons.forEach(function (b) {
-          var active = b === btn;
-          b.classList.toggle("is-active", active);
-          b.setAttribute("aria-pressed", active ? "true" : "false");
-        });
-
-        $$("#work [data-type]").forEach(function (item) {
-          var show = filter === "all" || item.getAttribute("data-type") === filter;
-          item.classList.toggle("filtered-out", !show);
-          if (show) item.classList.add("is-visible");
-        });
-      });
-    });
-  }
-
-  /* ======================================================================
-     11. BACK TO TOP
+     10. BACK TO TOP
      ====================================================================== */
   function initBackToTop() {
     var btn = $("#to-top");
@@ -555,7 +528,7 @@
   }
 
   /* ======================================================================
-     12. CONTACT FORM
+     11. CONTACT FORM
      ----------------------------------------------------------------------
      - validates in the browser with friendly inline messages
      - posts JSON via fetch() to contact.php
@@ -706,7 +679,6 @@
     initReveal();
     initProcessLine();
     initCounters();
-    initFilters();
     initBackToTop();
     initForm();
   }

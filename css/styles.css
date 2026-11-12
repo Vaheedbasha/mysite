@@ -13,7 +13,7 @@
    5.  Header + navigation
    6.  Hero (including the CSS browser mockup)
    7.  Proof strip
-   8.  Section headings, filters
+   8.  Section headings
    9.  Work: featured cards, mini grid, demos
    10. Services
    11. Process timeline
@@ -850,40 +850,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   8. FILTERS
-   ========================================================================== */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  padding: 0.3rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  background: var(--surface);
-  width: fit-content;
-  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
-}
-.filter-btn {
-  padding: 0.48rem 1rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--text-muted);
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 600;
-  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease),
-              border-color var(--dur) var(--ease);
-}
-.filter-btn:hover { color: var(--text); border-color: var(--border); }
-/* Active filter is inverted, not coloured */
-.filter-btn.is-active {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bg);
-}
-
-/* ==========================================================================
    9. WORK
    ========================================================================== */
 .work-grid {
@@ -1129,9 +1095,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .demo p { margin: 0; font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; }
 .demo .chips { margin: 0; }
 .demo .text-link { margin-top: auto; font-size: 0.82rem; }
-
-/* Filtering */
-.filtered-out { display: none !important; }
 
 /* ==========================================================================
    10. SERVICES
@@ -1805,7 +1768,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Print: keep it readable and ink-light */
 @media print {
-  .site-header, .hero-visual, .filters, .to-top, .contact-form-wrap { display: none !important; }
+  .site-header, .hero-visual, .to-top, .contact-form-wrap { display: none !important; }
   body { background: #fff; color: #000; }
   .section { padding-block: 1.5rem; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #555; }
