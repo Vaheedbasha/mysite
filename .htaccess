@@ -1,0 +1,108 @@
+# ==========================================================================
+# VAHEED BASHA — ROOT .htaccess
+# Works on Hostinger shared hosting (Apache 2.4, PHP 8.x).
+# Everything is wrapped in <IfModule> so the site keeps working if a module
+# is turned off on your plan.
+# ==========================================================================
+
+# --- Basics ---------------------------------------------------------------
+Options -Indexes
+DirectoryIndex index.html index.php
+
+AddDefaultCharset UTF-8
+AddType image/svg+xml .svg
+AddType image/webp .webp
+AddType font/woff2 .woff2
+
+# --- Friendly error page (optional; remove if you prefer the host default) --
+# ErrorDocument 404 /index.html
+
+# --- gzip / deflate compression -------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
+
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/css application/javascript
+    AddOutputFilterByType BROTLI_COMPRESS application/json image/svg+xml
+</IfModule>
+
+# --- Browser caching ------------------------------------------------------
+# Images and fonts rarely change, so they are cached for a year.
+# CSS/JS get a shorter window because the file names do not change when you
+# edit them (no build step). After editing styles.css or main.js, hard-refresh
+# (Ctrl/Cmd + Shift + R) to see the change immediately.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp              "access plus 1 year"
+    ExpiresByType image/png               "access plus 1 year"
+    ExpiresByType image/jpeg              "access plus 1 year"
+    ExpiresByType image/svg+xml           "access plus 1 year"
+    ExpiresByType font/woff2              "access plus 1 year"
+    ExpiresByType text/css                "access plus 1 month"
+    ExpiresByType application/javascript  "access plus 1 month"
+    ExpiresByType text/html               "access plus 0 seconds"
+    ExpiresByType application/json        "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(webp|png|jpe?g|svg|woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "\.(html|php)$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# --- Security headers -----------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+</IfModule>
+
+# Optional: a Content-Security-Policy. Enable only after testing, because the
+# page uses small inline scripts (theme + JSON-LD) and Google Fonts.
+# <IfModule mod_headers.c>
+#     Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; form-action 'self'; frame-ancestors 'self'; base-uri 'self'"
+# </IfModule>
+
+# --- Protect sensitive files ---------------------------------------------
+<FilesMatch "(^\.|\.(md|log|ini|sql|bak|json|lock)$)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# .htaccess itself
+<Files ".htaccess">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</Files>
+
+# ==========================================================================
+# HTTPS + NON-WWW REDIRECT — UNCOMMENT AFTER THE REAL DOMAIN IS CONNECTED
+# --------------------------------------------------------------------------
+# Replace example.com with your domain, then delete the "#" at the start of
+# each line below. Test the site straight after: a wrong rule can loop.
+# ==========================================================================
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#
+#     # 1. Force HTTPS
+#     RewriteCond %{HTTPS} !=on
+#     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#
+#     # 2. Force non-www (drop the "www.")
+#     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+#     RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+# </IfModule>

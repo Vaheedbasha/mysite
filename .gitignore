@@ -1,0 +1,19 @@
+# Secrets — never commit real SMTP credentials
+includes/config.php
+.env
+.dev.vars
+
+# Review screenshots (not part of the site)
+artifacts/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+.idea/
+.vscode/
+
+# Dependencies (none needed for this project, kept for safety)
+node_modules/
+vendor/

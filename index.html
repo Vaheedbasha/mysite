@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ============================================================
+     LAUNCH NOTE: this line keeps the temporary Hostinger demo URL out of
+     search results. Delete it (and set NOINDEX_UNTIL_LAUNCH to false in
+     js/config.js) when the real domain is connected.
+     ============================================================ -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Vaheed Basha | Web Developer for Moving &amp; Logistics Businesses</title>
+<meta name="description" content="Vaheed Basha builds fast, mobile-first, SEO-ready websites and PHP/MySQL web apps for moving, packers and logistics businesses across India. Get a quote today.">
+<link rel="canonical" href="https://example-portfolio.hostingersite.com/">
+
+<!-- Theme colour for browser UI, per colour scheme -->
+<meta name="theme-color" content="#F5F5F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+
+<!-- Open Graph / Twitter. Replace images/og-image.png with your own 1200x630 design. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vaheed Basha">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Vaheed Basha | Web Developer for Moving &amp; Logistics Businesses">
+<meta property="og:description" content="Fast, mobile-first, SEO-ready websites and custom PHP/MySQL web apps for moving and logistics businesses in India.">
+<meta property="og:url" content="https://example-portfolio.hostingersite.com/">
+<meta property="og:image" content="https://example-portfolio.hostingersite.com/images/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vaheed Basha — websites for moving and logistics businesses">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vaheed Basha | Web Developer for Moving &amp; Logistics Businesses">
+<meta name="twitter:description" content="Fast, mobile-first, SEO-ready websites and custom PHP/MySQL web apps for moving and logistics businesses in India.">
+<meta name="twitter:image" content="https://example-portfolio.hostingersite.com/images/og-image.png">
+
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+<!-- Fonts: preconnect, then a single swap-enabled stylesheet -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+
+<!-- Set the theme before first paint so there is no flash of the wrong theme. -->
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersLight ? 'light' : 'dark'));
+  } catch (e) {
+    /* localStorage blocked: keep the default dark theme from the html tag */
+  }
+})();
+</script>
+
+<!-- Reveal animations are enabled by this class only, so content is never
+     hidden when JavaScript is unavailable. -->
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- Structured data: person + service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://example-portfolio.hostingersite.com/#vaheed",
+      "name": "Vaheed Basha",
+      "jobTitle": "Independent Web Developer",
+      "description": "Web developer building fast, SEO-ready websites and custom PHP/MySQL web applications for moving, packers and logistics businesses in India.",
+      "url": "https://example-portfolio.hostingersite.com/",
+      "email": "mailto:vaheedbasha882@gmail.com",
+      "telephone": "+91-9550926882",
+      "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+      "knowsAbout": ["Web development", "PHP", "MySQL", "HTML", "CSS", "JavaScript", "SEO", "Responsive design"],
+      "sameAs": ["https://www.linkedin.com/in/vaheed-basha/"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://example-portfolio.hostingersite.com/#service",
+      "name": "Vaheed Basha — Web Development",
+      "url": "https://example-portfolio.hostingersite.com/",
+      "image": "https://example-portfolio.hostingersite.com/images/og-image.png",
+      "description": "Business websites and custom PHP/MySQL web applications for moving, packers and logistics businesses in India.",
+      "areaServed": { "@type": "Country", "name": "India" },
+      "founder": { "@id": "https://example-portfolio.hostingersite.com/#vaheed" },
+      "serviceType": ["Business website design", "Web application development", "Website maintenance"],
+      "email": "vaheedbasha882@gmail.com",
+      "telephone": "+91-9550926882"
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="#top" aria-label="Vaheed — back to top">VAHEED<span class="logo-dot">.</span></a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#work">Work</a></li>
+        <li><a class="nav-link" href="#services">Services</a></li>
+        <li><a class="nav-link" href="#process">Process</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-mobile-actions">
+        <a class="btn btn-primary btn-block" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer">
+          Get a Quote
+          <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      </button>
+
+      <a class="btn btn-primary header-cta" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer">
+        Get a Quote
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <svg class="icon icon-menu" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" id="top">
+    <div class="hero-glow hero-glow-a" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-b" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="badge availability hero-enter" data-delay="0">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span data-site="availability">Open for projects · replies within 24h</span>
+        </p>
+
+        <h1 class="hero-enter" data-delay="1">Websites for moving &amp; logistics businesses</h1>
+        <p class="hero-sub hero-enter" data-delay="2">Independent Web Developer · Product Builder</p>
+        <p class="hero-lead hero-enter" data-delay="3">
+          I build fast, mobile-friendly, SEO-ready websites that turn visitors into enquiries —
+          plus custom PHP and MySQL tools when the business needs more than pages.
+        </p>
+
+        <div class="hero-actions hero-enter" data-delay="4">
+          <a class="btn btn-primary" href="#work">
+            View My Work
+            <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-secondary" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer">
+            <svg class="icon brand-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+            WhatsApp Me
+          </a>
+        </div>
+
+        <div class="hero-social hero-enter" data-delay="5">
+          <span class="hero-social-label">Find me on</span>
+          <a class="social-link" href="https://www.linkedin.com/in/vaheed-basha/" target="_blank" rel="noopener noreferrer" aria-label="Vaheed Basha on LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          </a>
+          <a class="social-link" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat with Vaheed on WhatsApp">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual: CSS/SVG browser mockup. Profile photo appears only if
+           images/profile.jpg exists (hidden automatically when missing). -->
+      <div class="hero-visual hero-enter" data-delay="3" aria-hidden="true">
+        <div class="mockup">
+          <div class="mockup-bar">
+            <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+            <span class="mockup-url">yourbusiness.in</span>
+          </div>
+          <div class="mockup-body">
+            <div class="mockup-nav"><span class="mockup-logo">V.</span><span class="mockup-pill"></span><span class="mockup-pill"></span><span class="mockup-pill"></span><span class="mockup-btn"></span></div>
+            <div class="mockup-hero">
+              <span class="mockup-line mockup-line-lg"></span>
+              <span class="mockup-line mockup-line-lg short"></span>
+              <span class="mockup-line"></span>
+              <span class="mockup-line mockup-line-sm"></span>
+              <span class="mockup-cta"></span>
+            </div>
+            <div class="mockup-cards">
+              <span class="mockup-card"></span><span class="mockup-card"></span><span class="mockup-card"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="float-card float-card-speed">
+          <span class="float-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-8 12h6l-1 8 8-12h-6l1-8Z"/></svg>
+          </span>
+          <span>
+            <strong>Fast on mobile</strong>
+            <small>Built to load quickly</small>
+          </span>
+        </div>
+
+        <div class="float-card float-card-seo">
+          <span class="float-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          </span>
+          <span>
+            <strong>SEO-ready</strong>
+            <small>Structure that gets found</small>
+          </span>
+        </div>
+
+        <figure class="profile-slot">
+          <img src="images/profile.jpg" alt="Vaheed Basha, web developer" width="120" height="120" loading="lazy" decoding="async"
+               onerror="this.parentNode.remove();">
+        </figure>
+      </div>
+    </div>
+
+    <!-- Proof strip. Only "6" is a real counted figure. -->
+    <div class="container">
+      <ul class="proof-strip" aria-label="At a glance">
+        <li>
+          <span class="proof-num"><span class="counter" data-count="6">6</span></span>
+          <span class="proof-label">live sites</span>
+        </li>
+        <li>
+          <span class="proof-num proof-num-text">Mobile-first</span>
+          <span class="proof-label">builds</span>
+        </li>
+        <li>
+          <span class="proof-num proof-num-text">SEO-ready</span>
+          <span class="proof-label">structure</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ WORK ============================ -->
+  <section class="section" id="work">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2>Live projects, not mockups</h2>
+        <p class="section-lead">
+          Business websites for moving and logistics companies, plus web applications built on
+          PHP and MySQL. Every live link below opens the real site in a new tab.
+        </p>
+      </header>
+
+      <div class="filters reveal" role="group" aria-label="Filter projects">
+        <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="business" aria-pressed="false">Business Websites</button>
+        <button class="filter-btn" type="button" data-filter="app" aria-pressed="false">Web Apps</button>
+      </div>
+
+      <!-- Featured: 3 large image-led cards -->
+      <div class="work-grid" id="work-featured">
+        <article class="proj reveal" data-type="business">
+          <div class="shot">
+            <div class="shot-fallback" aria-hidden="true">
+              <span class="shot-frame-bar"><i></i><i></i><i></i></span>
+              <span class="shot-fallback-name">Urban Club Relocation</span>
+              <span class="shot-fallback-note">Screenshot coming soon</span>
+            </div>
+            <img src="images/projects/urban-club.webp" alt="Home page of the Urban Club Relocation website"
+                 width="1600" height="1000" loading="lazy" decoding="async" onerror="this.remove()">
+          </div>
+          <div class="proj-body">
+            <p class="proj-meta"><span class="proj-cat">Business Website</span><span class="sep" aria-hidden="true">·</span><span>Live</span></p>
+            <h3>Urban Club Relocation</h3>
+            <p>A relocation company's main website: clear service pages, honest trust signals and an enquiry path that is never more than a tap away on a phone.</p>
+            <ul class="chips" aria-label="Technologies used">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SEO</li>
+            </ul>
+            <p class="proj-role"><span>My role:</span> Design and front-end build, enquiry form, on-page SEO and launch.</p>
+            <dl class="case">
+              <div><dt>Challenge</dt><dd>The business was competing with large aggregators and needed a site that looked credible on a phone, where most of its customers arrive.</dd></div>
+              <div><dt>What I built</dt><dd>A fast, mobile-first site with dedicated moving and packing service sections, a visible call and WhatsApp action, and an enquiry form that reaches the owner directly.</dd></div>
+              <div><dt>Result</dt><dd>The site now works as the company's day-to-day front door for local enquiries, and the owner can point customers to one clear link.</dd></div>
+            </dl>
+            <a class="btn btn-ghost proj-link" href="https://urbanclubpackersandmovers.in/" target="_blank" rel="noopener noreferrer">
+              Visit live site
+              <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="proj reveal" data-type="business">
+          <div class="shot">
+            <div class="shot-fallback" aria-hidden="true">
+              <span class="shot-frame-bar"><i></i><i></i><i></i></span>
+              <span class="shot-fallback-name">Move Express Packers</span>
+              <span class="shot-fallback-note">Screenshot coming soon</span>
+            </div>
+            <img src="images/projects/move-express.webp" alt="Home page of the Move Express Packers website"
+                 width="1600" height="1000" loading="lazy" decoding="async" onerror="this.remove()">
+          </div>
+          <div class="proj-body">
+            <p class="proj-meta"><span class="proj-cat">Business Website</span><span class="sep" aria-hidden="true">·</span><span>Live</span></p>
+            <h3>Move Express Packers</h3>
+            <p>A packers and movers site built around the questions customers actually ask: what is covered, how pricing works, and how to book a move quickly.</p>
+            <ul class="chips" aria-label="Technologies used">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SEO</li>
+            </ul>
+            <p class="proj-role"><span>My role:</span> Layout and visual design, responsive build, enquiry handling, basic SEO setup.</p>
+            <dl class="case">
+              <div><dt>Challenge</dt><dd>A newer moving business needed a professional presence that could earn trust against older local competitors.</dd></div>
+              <div><dt>What I built</dt><dd>A clean single-brand site with service coverage, a simple quote request flow and phone and WhatsApp actions that stay reachable while scrolling.</dd></div>
+              <div><dt>Result</dt><dd>Enquiries arrive in one inbox with the customer's details already filled in, so the first reply can go out without back-and-forth.</dd></div>
+            </dl>
+            <a class="btn btn-ghost proj-link" href="https://movexpresspacker.in/" target="_blank" rel="noopener noreferrer">
+              Visit live site
+              <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="proj reveal" data-type="business">
+          <div class="shot">
+            <div class="shot-fallback" aria-hidden="true">
+              <span class="shot-frame-bar"><i></i><i></i><i></i></span>
+              <span class="shot-fallback-name">Trust Line Cargo</span>
+              <span class="shot-fallback-note">Screenshot coming soon</span>
+            </div>
+            <img src="images/projects/trust-line.webp" alt="Home page of the Trust Line Cargo website"
+                 width="1600" height="1000" loading="lazy" decoding="async" onerror="this.remove()">
+          </div>
+          <div class="proj-body">
+            <p class="proj-meta"><span class="proj-cat">Business Website</span><span class="sep" aria-hidden="true">·</span><span>Live</span></p>
+            <h3>Trust Line Cargo</h3>
+            <p>A cargo and packing business with services spread across household shifting, office moves and transport, presented in one tidy, readable structure.</p>
+            <ul class="chips" aria-label="Technologies used">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SEO</li>
+            </ul>
+            <p class="proj-role"><span>My role:</span> Information structure, design, responsive front-end and form setup.</p>
+            <dl class="case">
+              <div><dt>Challenge</dt><dd>Several different services were being explained in one long page, which made the business look smaller than it is.</dd></div>
+              <div><dt>What I built</dt><dd>A sectioned site that separates each service, repeats the enquiry actions in sensible places, and keeps the writing short and specific.</dd></div>
+              <div><dt>Result</dt><dd>Visitors can find the service they need in a couple of taps, and the owner has a site that is easy to update as services grow.</dd></div>
+            </dl>
+            <a class="btn btn-ghost proj-link" href="https://trustlinecargopackersandmovers.in/" target="_blank" rel="noopener noreferrer">
+              Visit live site
+              <svg class="icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- More live sites -->
+      <h3 class="subhead reveal">More live sites</h3>
+      <div class="mini-grid" id="work-more">
+        <article class="mini reveal" data-type="business">
+          <div class="mini-thumb">
+            <img src="images/projects/cool-logistics.webp" alt="Home page of the Cool Logistics website"
+                 width="800" height="500" loading="lazy" decoding="async" onerror="this.remove()">
+            <span class="mini-initial" aria-hidden="true">CL</span>
+          </div>
+          <div class="mini-body">
+            <h4>Cool Logistics</h4>
+            <p>Packers and movers site focused on quick enquiries and clear service coverage.</p>
+            <a class="text-link" href="https://coollogisticspackers.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Cool Logistics website (opens in a new tab)">Visit site<span aria-hidden="true"> →</span></a>
+          </div>
+        </article>
+
+        <article class="mini reveal" data-type="business">
+          <div class="mini-thumb">
+            <img src="images/projects/shiftezy.webp" alt="Home page of the ShiftEzy website"
+                 width="800" height="500" loading="lazy" decoding="async" onerror="this.remove()">
+            <span class="mini-initial" aria-hidden="true">SE</span>
+          </div>
+          <div class="mini-body">
+            <h4>ShiftEzy</h4>
+            <p>Relocation brand website with a light, modern feel and a simple quote path.</p>
+            <a class="text-link" href="https://shiftezy.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit the ShiftEzy website (opens in a new tab)">Visit site<span aria-hidden="true"> →</span></a>
+          </div>
+        </article>
+
+        <article class="mini reveal" data-type="business">
+          <div class="mini-thumb">
+            <img src="images/projects/shiv-transport.webp" alt="Home page of the Shiv Transport website"
+                 width="800" height="500" loading="lazy" decoding="async" onerror="this.remove()">
+            <span class="mini-initial" aria-hidden="true">ST</span>
+          </div>
+          <div class="mini-body">
+            <h4>Shiv Transport</h4>
+            <p>Transport and packing site built for straightforward browsing on mobile.</p>
+            <a class="text-link" href="https://www.shivtransportpackers.in/" target="_blank" rel="noopener noreferrer" aria-label="Visit the Shiv Transport website (opens in a new tab)">Visit site<span aria-hidden="true"> →</span></a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Demos & previews. These are NOT client work; each card carries a badge. -->
+      <h3 class="subhead reveal">Demos &amp; previews</h3>
+      <div class="demo-grid" id="work-demos">
+        <article class="demo reveal" data-type="app">
+          <div class="demo-head">
+            <span class="badge badge-demo">Demo build</span>
+            <span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <h4>CoachDesk</h4>
+          <p>A coaching and school management application: students, batches, attendance and fee records in one dashboard.</p>
+          <ul class="chips" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li></ul>
+          <a class="text-link" href="https://aqua-louse-772157.hostingersite.com/" target="_blank" rel="noopener noreferrer" aria-label="Open the CoachDesk demo (opens in a new tab)">Open demo<span aria-hidden="true"> →</span></a>
+        </article>
+
+        <article class="demo reveal" data-type="app">
+          <div class="demo-head">
+            <span class="badge badge-demo">Demo build</span>
+            <span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <h4>FreshSupply</h4>
+          <p>An online vegetable ordering website with product listings, a cart and a checkout flow built on PHP and MySQL.</p>
+          <ul class="chips" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li></ul>
+          <a class="text-link" href="https://lavenderblush-barracuda-324357.hostingersite.com/" target="_blank" rel="noopener noreferrer" aria-label="Open the FreshSupply demo (opens in a new tab)">Open demo<span aria-hidden="true"> →</span></a>
+        </article>
+
+        <article class="demo reveal" data-type="business">
+          <div class="demo-head">
+            <span class="badge badge-soon">Delivered · launching soon</span>
+            <span class="demo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <h4>Easy Shift Relocations</h4>
+          <p>A packers and movers website delivered to the business owner, currently waiting on its own domain before going live.</p>
+          <ul class="chips" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SEO</li></ul>
+          <a class="text-link" href="https://darkred-albatross-330697.hostingersite.com/" target="_blank" rel="noopener noreferrer" aria-label="Preview the Easy Shift Relocations website (opens in a new tab)">Preview<span aria-hidden="true"> →</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SERVICES ============================ -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">What I do</p>
+        <h2>Websites and tools that do a job</h2>
+        <p class="section-lead">
+          Everything here is built by hand: no page builders, no plugin pile-ups. Just clean code
+          that loads fast and is easy to keep running.
+        </p>
+      </header>
+
+      <div class="services-grid" id="services-grid">
+        <article class="service reveal">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </span>
+          <h3>Business Websites</h3>
+          <p>A fast, credible website that answers the questions customers ask before they call.</p>
+          <ul class="bullet-list">
+            <li>Responsive, SEO-ready page structure</li>
+            <li>Service pages written around real enquiries</li>
+            <li>Hosting, domain and launch handled</li>
+          </ul>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </span>
+          <h3>UI/UX &amp; Design</h3>
+          <p>Clean, familiar interfaces that look good and are easy to use on any screen.</p>
+          <ul class="bullet-list">
+            <li>Mobile-first layouts and readable type</li>
+            <li>Clear hierarchy, spacing and contrast</li>
+            <li>A small, reusable style system</li>
+          </ul>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18 5-5-5-5"/><path d="m9 6-5 5 5 5"/></svg>
+          </span>
+          <h3>Web Applications</h3>
+          <p>Custom PHP and MySQL tools that replace spreadsheets and repeated manual work.</p>
+          <ul class="bullet-list">
+            <li>Admin dashboards, records and reports</li>
+            <li>Built around the way your team works</li>
+            <li>Clean data handling and exports</li>
+          </ul>
+        </article>
+
+        <article class="service reveal">
+          <span class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5.1 5.1l-8.9 8.9a2.5 2.5 0 0 1-3.5-3.5l8.9-8.9"/><path d="M17.5 3.5 21 7"/></svg>
+          </span>
+          <h3>Maintenance &amp; Support</h3>
+          <p>Updates and fixes after launch, so the site keeps working while you run the business.</p>
+          <ul class="bullet-list">
+            <li>Content changes and bug fixes</li>
+            <li>Backups and uptime checks</li>
+            <li>Plain-language help when you need it</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="services-cta reveal">
+        Have something specific in mind?
+        <a class="text-link" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer">Get a quote<span aria-hidden="true"> →</span></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ PROCESS ============================ -->
+  <section class="section" id="process">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">How I work</p>
+        <h2>Five steps, no surprises</h2>
+        <p class="section-lead">You always know what is happening, what comes next and what I need from you.</p>
+      </header>
+
+      <ol class="process-list" id="process-list">
+        <li class="process-step reveal">
+          <span class="process-index">01</span>
+          <h3>Discuss</h3>
+          <p>We talk through the business, the customers and what the site has to do.</p>
+        </li>
+        <li class="process-step reveal">
+          <span class="process-index">02</span>
+          <h3>Design</h3>
+          <p>I map the pages and share a clean design for your feedback.</p>
+        </li>
+        <li class="process-step reveal">
+          <span class="process-index">03</span>
+          <h3>Build</h3>
+          <p>I build it responsive, fast and SEO-ready, then test it on real phones.</p>
+        </li>
+        <li class="process-step reveal">
+          <span class="process-index">04</span>
+          <h3>Launch</h3>
+          <p>Domain, hosting, forms and search setup are checked before it goes live.</p>
+        </li>
+        <li class="process-step reveal">
+          <span class="process-index">05</span>
+          <h3>Support</h3>
+          <p>I stay reachable for fixes, updates and small changes after launch.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ ABOUT ============================ -->
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div class="about-copy reveal">
+        <p class="eyebrow">About</p>
+        <h2>I build the whole thing, start to finish</h2>
+        <p>
+          I'm an independent web developer based in India. I build business websites and web
+          applications, with a focus on moving, packers and logistics companies — a niche where a
+          clear phone-friendly site is often the difference between an enquiry and a missed call.
+        </p>
+        <p>
+          My background is a BSc in Maths, Electronics and Computer Science, and I have been
+          building and shipping sites for small businesses since then. I work on the design, the
+          front-end, the PHP behind the forms and the hosting setup, so there is one person to ask
+          when something needs to change.
+        </p>
+        <p>
+          I write code by hand and keep things small on purpose: fewer moving parts means a site
+          that is faster, cheaper to host and easier to fix later.
+        </p>
+        <p class="learning-note">Currently learning: Python, automation.</p>
+      </div>
+
+      <div class="about-side reveal">
+        <ul class="highlight-row">
+          <li><strong>6</strong><span>live sites</span></li>
+          <li><strong>Mobile-first</strong><span>every build</span></li>
+          <li><strong>SEO-ready</strong><span>structure</span></li>
+        </ul>
+
+        <div class="tech-strip">
+          <div class="tech-group">
+            <h3>Frontend</h3>
+            <ul class="chips"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+          </div>
+          <div class="tech-group">
+            <h3>Backend</h3>
+            <ul class="chips"><li>PHP</li></ul>
+          </div>
+          <div class="tech-group">
+            <h3>Database</h3>
+            <ul class="chips"><li>MySQL</li></ul>
+          </div>
+          <div class="tech-group">
+            <h3>Practices</h3>
+            <ul class="chips"><li>Responsive design</li><li>SEO basics</li></ul>
+          </div>
+          <div class="tech-group">
+            <h3>Deployment</h3>
+            <ul class="chips"><li>Hosting</li><li>Domains</li><li>Deployment</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ TESTIMONIALS ============================ -->
+  <!-- ===================================================================
+       THESE ARE SAMPLE PLACEHOLDERS. Replace them with real quotes (with
+       each client's permission) before promoting the site publicly.
+       The "Sample" badge is controlled by SHOW_SAMPLE_BADGE in js/config.js.
+       =================================================================== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Kind words</p>
+        <h2>What clients say</h2>
+        <p class="section-lead">A few words from business owners I have worked with.</p>
+      </header>
+
+      <div class="testimonials-grid" id="testimonials-grid">
+        <figure class="quote-card reveal">
+          <span class="badge badge-sample" data-sample-badge>Sample</span>
+          <blockquote>He understood our moving business before designing anything, and the site says what we actually do. It loads quickly on a phone, which is where almost all our customers find us.</blockquote>
+          <figcaption data-initials="SC"><strong>Sample Client</strong><span>Owner, Packers &amp; Movers Business</span></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <span class="badge badge-sample" data-sample-badge>Sample</span>
+          <blockquote>The work was delivered quickly and the design feels modern without being confusing. Our customers can now send an enquiry in a few taps instead of calling and waiting.</blockquote>
+          <figcaption data-initials="SC"><strong>Sample Client</strong><span>Owner, Cargo &amp; Logistics Business</span></figcaption>
+        </figure>
+        <figure class="quote-card reveal">
+          <span class="badge badge-sample" data-sample-badge>Sample</span>
+          <blockquote>Communication was clear from the first call to the launch. When we asked for small changes, they were done properly instead of half-fixed.</blockquote>
+          <figcaption data-initials="SC"><strong>Sample Client</strong><span>Manager, Relocation Services</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CONTACT ============================ -->
+  <section class="section section-contact" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-copy reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Have a project in mind?</h2>
+        <p class="section-lead">
+          Tell me what the business does and what the site needs to achieve. I will reply with
+          honest advice, a rough timeline and a clear next step.
+        </p>
+
+        <div class="contact-actions">
+          <a class="contact-btn" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+            </span>
+            <span><strong>WhatsApp</strong><small>Fastest — usually replies within 24h</small></span>
+          </a>
+
+          <a class="contact-btn" href="mailto:vaheedbasha882@gmail.com?subject=Website%20project%20enquiry">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span><strong>Email</strong><small>vaheedbasha882@gmail.com</small></span>
+          </a>
+
+          <a class="contact-btn contact-btn-small" href="https://www.linkedin.com/in/vaheed-basha/" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            </span>
+            <span><strong>LinkedIn</strong><small>Connect or send a message</small></span>
+          </a>
+        </div>
+
+        <p class="contact-note">Let's Build Something Together</p>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <h3 class="form-title">Send a message</h3>
+        <form class="contact-form" id="contact-form" action="contact.php" method="post" novalidate>
+          <div class="field">
+            <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required maxlength="80"
+                   aria-describedby="name-error" placeholder="Your name">
+            <p class="field-error" id="name-error" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required maxlength="120"
+                   aria-describedby="email-error" placeholder="you@example.com">
+            <p class="field-error" id="email-error" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="5" required maxlength="4000"
+                      aria-describedby="message-error" placeholder="What does the business do, and what should the site achieve?"></textarea>
+            <p class="field-error" id="message-error" role="alert" hidden></p>
+          </div>
+
+          <!-- Honeypot: hidden from people, tempting to bots. Leave it empty. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit" id="submit-btn">
+            <span class="btn-label">Send message</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="form-hint">Your details are only used to reply to this enquiry.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="logo" href="#top" aria-label="Vaheed — back to top">VAHEED<span class="logo-dot">.</span></a>
+      <p>Fast, SEO-ready websites and custom web apps for moving and logistics businesses in India.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <h2 class="footer-heading">Quick links</h2>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-social">
+      <h2 class="footer-heading">Elsewhere</h2>
+      <div class="footer-social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/vaheed-basha/" target="_blank" rel="noopener noreferrer" aria-label="Vaheed Basha on LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+        </a>
+        <a class="social-link" href="https://wa.me/919550926882?text=Hi%20Vaheed%2C%20I%27d%20like%20to%20discuss%20a%20website%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat with Vaheed on WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.66.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year">2026</span> Vaheed Basha. All rights reserved.</p>
+    <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+    </button>
+  </div>
+</footer>
+
+<!-- Scripts: config first (data), then behaviour. Both deferred, neither blocks render. -->
+<script src="js/config.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

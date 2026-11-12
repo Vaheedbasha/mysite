@@ -1,0 +1,9 @@
+# Block all direct browser access to /includes/
+# (credentials, the mailer library and server-side code live here)
+Require all denied
+
+# Fallback for very old Apache 2.2 installs
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

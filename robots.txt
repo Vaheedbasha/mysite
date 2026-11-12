@@ -1,0 +1,18 @@
+# ==========================================================================
+# robots.txt — Vaheed Basha portfolio
+# ==========================================================================
+# CURRENT STATE: the site is on a temporary Hostinger demo URL, so everything
+# is blocked from crawling/indexing.
+#
+# AT LAUNCH (real domain connected):
+#   1. Set NOINDEX_UNTIL_LAUNCH to false in js/config.js
+#   2. Delete the <meta name="robots" content="noindex, nofollow"> line in
+#      index.html
+#   3. Delete the "Disallow: /" line below and uncomment the sitemap line
+# ==========================================================================
+
+User-agent: *
+Disallow: /
+
+# Uncomment at launch:
+# Sitemap: https://example-portfolio.hostingersite.com/sitemap.xml
