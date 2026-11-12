@@ -17,3 +17,7 @@ Thumbs.db
 # Dependencies (none needed for this project, kept for safety)
 node_modules/
 vendor/
+
+# Python cache (tools/)
+__pycache__/
+*.pyc
