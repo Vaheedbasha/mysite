@@ -18,6 +18,9 @@ Thumbs.db
 node_modules/
 vendor/
 
+# Portrait WebP — user uploaded directly to Hostinger, exclude from git
+portrait.webp
+
 # Python cache (tools/)
 __pycache__/
 *.pyc
