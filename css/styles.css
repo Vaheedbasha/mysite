@@ -500,6 +500,117 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
+
+/* ==========================================================================
+   DAY & NIGHT THEME TOGGLE
+   Vaheed Basha Portfolio — preserves existing [data-theme] persistence
+   ========================================================================== */
+
+/* Theme switch base */
+.theme-switch {
+  --sw-w: 56px;
+  --sw-h: 28px;
+  --sw-knob: 24px;
+  position: relative;
+  flex: none;
+  width: var(--sw-w);
+  height: var(--sw-h);
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+
+/* Light mode track - warm ivory with sun and clouds */
+[data-theme="light"] .theme-switch {
+  background: linear-gradient(135deg, #f5f0e8 0%, #f0e8e0 100%);
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode track - deep charcoal with moon and stars */
+[data-theme="dark"] .theme-switch {
+  background: linear-gradient(135deg, #191919 0%, #141414 100%);
+  box-shadow:
+    0 2px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover state */
+.theme-switch:hover {
+  box-shadow:
+    0 4px 25px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Active/pressed state */
+.theme-switch:active {
+  transform: scale(0.96);
+}
+
+/* Focus visible */
+.theme-switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   TRACK DECORATIONS - SUN / MOON / CLOUDS / STARS
+   ========================================================================== */
+
+/* Light mode: sun and clouds */
+[data-theme="light"] .theme-switch-sun {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+[data-theme="light"] .theme-switch-sun svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--accent);
+  filter: drop-shadow(0 2px 4px rgba(255, 138, 20, 0.18));
+}
+
+/* Dark mode: moon and stars */
+[data-theme="dark"] .theme-switch-moon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+;
+  height: 32px;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .theme-switch-moon svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--accent);
+  filter: drop-shadow(0 2px 4px rgba(255, 138, 20, 0.4));
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch {
+    transition: background 200ms, box-shadow 200ms;
+  }
+  .theme-switch:active {
+    transform: none;
+  }
+}
+
+
+
 .btn-letstalk {
   padding: 0.6rem 1.2rem;
   font-size: 0.875rem;
