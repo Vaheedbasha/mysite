@@ -563,7 +563,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .theme-switch-knob {
   position: absolute;
-  top: var(--sw-pad);
+  top: calc(var(--sw-pad) + 1px);
   left: var(--sw-pad);
   z-index: 2;
   width: var(--sw-knob);
@@ -573,14 +573,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
               background-color 400ms var(--ease), box-shadow 400ms var(--ease);
 }
 [data-theme="dark"] .theme-switch-knob {
-  transform: translateX(6px);
+  transform: translateX(calc(var(--sw-w) - var(--sw-knob) - var(--sw-pad) * 2));
   background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 [data-theme="light"] .theme-switch-knob {
   transform: translateX(calc(var(--sw-w) - var(--sw-knob) - var(--sw-pad) * 2));
   background: #0a0a0b;
-  box-shadow: 0 2px 6px rgba(60, 45, 25, 0.3);
+  box-shadow: 0 2px 4px rgba(60, 45, 25, 0.3);
 }
 
 @media (max-width: 420px) {
