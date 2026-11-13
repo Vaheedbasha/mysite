@@ -847,8 +847,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Moon icon: positioned on the right in dark mode */
 .theme-switch-moon { right: var(--sw-pad); }
 
-/* Light mode sun - visible, coloured with accent */
-[data-theme="light"] .theme-switch-sun { color: var(--accent); opacity: 1; }
+/* Light mode sun - visible, coloured with accent, z-index 3 above knob, positioned on right */
+[data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); color: var(--accent); opacity: 1; z-index: 3; }
 /* Dark mode sun - hidden */
 [data-theme="dark"] .theme-switch-sun { color: var(--text-faint); opacity: 0; }
 /* Dark mode moon - visible */
