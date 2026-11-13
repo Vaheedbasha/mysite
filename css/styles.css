@@ -552,8 +552,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   pointer-events: none;
   transition: color 400ms var(--ease), opacity 320ms var(--ease);
 }
-/* Sun icon: positioned on the left in light mode */
+/* Sun icon: positioned on the left in dark mode, right in light mode */
 .theme-switch-sun { left: var(--sw-pad); }
+[data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); }
 /* Moon icon: positioned on the right in dark mode */
 .theme-switch-moon { right: var(--sw-pad); }
 
