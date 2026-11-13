@@ -457,6 +457,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
   align-items: center;
   gap: clamp(0.35rem, 1.6vw, 1.1rem);
 }
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav-link {
   position: relative;
   display: inline-block;
@@ -850,11 +856,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Light mode sun - visible, coloured with accent, z-index 3 above knob, positioned on right */
 [data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); color: var(--accent); opacity: 1; z-index: 3; }
 /* Dark mode sun - hidden */
-[data-theme="dark"] .theme-switch-sun { color: var(--text-faint); opacity: 0; }
+[data-theme="dark"] .theme-switch-sun { color: var(--text-faint); opacity: 0; position: absolute; }
 /* Dark mode moon - visible */
-[data-theme="dark"] .theme-switch-moon { color: var(--text); opacity: 1; }
+[data-theme="dark"] .theme-switch-moon { color: var(--text); opacity: 1; position: absolute; right: var(--sw-pad); }
 /* Light mode moon - hidden */
-[data-theme="light"] .theme-switch-moon { color: var(--text-faint); opacity: 0; }
+[data-theme="light"] .theme-switch-moon { color: var(--text-faint); opacity: 0; position: absolute; right: var(--sw-pad); }
 
 /* Knob z-index */
 .theme-switch-knob { z-index: 2; }
@@ -893,7 +899,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
-.nav-mobile-actions { display: none; }
+.nav-mobile-actions { display: block; }
 
 /* ==========================================================================
    6. HERO — editorial portrait composition
@@ -2181,7 +2187,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
   .nav-link::after { display: none; }
   .nav-link.is-active { color: var(--accent); }
-  .nav-mobile-actions { display: block; margin-top: var(--space-5); }
+  .nav-mobile-actions { display: none; }
 
   body.nav-open { overflow: hidden; }
 
