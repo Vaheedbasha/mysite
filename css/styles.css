@@ -500,386 +500,46 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.btn-letstalk {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 200ms var(--ease), transform 150ms var(--ease);
+  white-space: nowrap;
+}
 
-   Light: ivory track, charcoal knob right, sun left. One switch, two states. */
+.btn-letstalk:hover {
+  background: #e67a00;
+  transform: translateY(-2px);
+}
+
+.btn-letstalk:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) { .btn-letstalk { transition: background 200ms; transform: none; } }
+
+
+
+   
 }
 /* ==========================================================================
-   3D DAY & NIGHT THEME TOGGLE — REPLACEMENT FOR OLD .theme-switch RULES
-   Vaheed Basha Portfolio — Premium illustrated day/night environment
+      Vaheed Basha Portfolio — Premium illustrated day/night environment
    Uses [data-theme] selectors to preserve existing theme persistence
    ========================================================================== */
 
-.theme-switch {
-  --sw-w: 96px;
-  --sw-h: 52px;
-  --sw-knob: 36px;
-  --sw-pad: 8px;
-  position: relative;
-  flex: none;
-  width: var(--sw-w);
-  height: var(--sw-h);
-  padding: 0;
-  border: none;
-  border-radius: 26px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 400ms var(--ease), box-shadow 400ms var(--ease);
-  font-size: 0.82rem;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: none;
-}
-
-/* Light mode track - warm ivory with sun and clouds */
-[data-theme="light"] .theme-switch {
-  background: linear-gradient(135deg, #f5f0e8 0%, #f0e8e0 100%);
-  box-shadow:
-    0 2px 20px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Dark mode track - deep charcoal with moon and stars */
-[data-theme="dark"] .theme-switch {
-  background: linear-gradient(135deg, #191919 0%, #141414 100%);
-  box-shadow:
-    0 2px 20px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Hover state */
-.theme-switch:hover {
-  box-shadow:
-    0 4px 25px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Active/pressed state */
-.theme-switch:active {
-  transform: scale(0.96);
-}
-
-/* Focus visible */
-.theme-switch:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-/* ==========================================================================
-   TRACK DECORATIONS - SUN / MOON / CLOUDS / STARS
-   ========================================================================== */
-
-/* Light mode: sun and clouds */
-[data-theme="light"] .theme-switch-sun {
-  position: absolute;
-  left: var(--sw-pad);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  pointer-events: none;
-}
-
-[data-theme="light"] .theme-switch-sun svg {
-  width: 100%;
-  height: 100%;
-  fill: var(--accent);
-  filter: drop-shadow(0 2px 4px rgba(255, 138, 20, 0.18));
-}
-
-/* Three clouds in light mode */
-[data-theme="light"] .theme-switch-clouds {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  font-size: 0;
-}
-
-.theme-switch-cloud {
-  display: inline-block;
-  background: #f8f5f0;
-  border-radius: 50px 50px 25px 25px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-  animation: cloudDrift 20s ease-in-out infinite;
-}
-
-@keyframes cloudDrift {
-  0%, 100% { transform: translateX(-20%); }
-  50% { transform: translateX(100%); }
-}
-
-.cloud-1 { width: 42px; height: 18px; left: 8%; animation-duration: 25s; }
-.cloud-2 { width: 28px; height: 14px; left: 35%; animation-duration: 30s; animation-direction: reverse; }
-.cloud-3 { width: 36px; height: 20px; left: 65%; animation-duration: 28s; }
-
-/* Dark mode: stars and moon */
-[data-theme="dark"] .theme-switch-moon {
-  position: absolute;
-  right: var(--sw-pad);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
-  pointer-events: none;
-}
-
-[data-theme="dark"] .theme-switch-moon svg {
-  width: 100%;
-  height: 100%;
-  fill: #f5f0e8;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-/* Stars in dark mode */
-[data-theme="dark"] .theme-switch-stars {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.theme-switch-star {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  margin: 0 1px;
-  animation: starTwinkle 3s ease-in-out infinite;
-}
-
-@keyframes starTwinkle {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
-}
-
-/* Orange accent stars */
-.theme-switch-orange-star {
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
-  animation: orangePulse 2s ease-in-out infinite;
-}
-
-@keyframes orangePulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent); }
-  50% { opacity: 0.6; box-shadow: 0 0 10px var(--accent); }
-}
-
-/* ==========================================================================
-   KNOB - CIRCULAR DIMENSIONAL SLIDER
-   ========================================================================== */
-
-/* Knob track/rail */
-.knob-track {
-  position: absolute;
-  top: 50%;
-  left: calc(var(--sw-pad) + var(--knob-offset, 0));
-  transform: translateY(-50%);
-  width: calc(var(--sw-w) - var(--sw-pad) * 2);
-  height: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Light mode knob - dimensional sun */
-[data-theme="light"] .theme-switch-knob {
-  position: absolute;
-  top: calc((var(--sw-h) - var(--sw-knob)) / 2);
-  left: var(--sw-pad);
-  width: var(--sw-knob);
-  height: var(--sw-knob);
-  border-radius: 50%;
-  background: linear-gradient(135deg, #fff 0%, #f5f0e8 100%);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 300ms ease;
-  z-index: 10;
-  overflow: hidden;
-}
-
-/* Sun rays on light mode knob */
-[data-theme="light"] .theme-switch-knob::before {
-  content: '';
-  position: absolute;
-  inset: 50% auto 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(ellipse at 30% 30%, var(--accent) 0%, transparent 50%);
-  opacity: 0.6;
-  filter: blur(1px);
-}
-
-[data-theme="light"] .theme-switch-knob::after {
-  content: '';
-  position: absolute;
-  inset: 30% 20% 0;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-/* Knob hover (light mode) */
-[data-theme="light"] .theme-switch-knob:hover {
-  box-shadow:
-    0 6px 16px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Dark mode knob - dimensional moon */
-[data-theme="dark"] .theme-switch-knob {
-  position: absolute;
-  top: calc((var(--sw-h) - var(--sw-knob)) / 2);
-  left: var(--sw-pad);
-  width: var(--sw-knob);
-  height: var(--sw-knob);
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-  box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 300ms ease;
-  z-index: 10;
-  overflow: hidden;
-}
-
-/* Crescent moon on dark mode knob */
-[data-theme="dark"] .theme-switch-knob::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 28px;
-  height: 14px;
-  background: linear-gradient(
-    ellipse at 30% 50%, #f5f0e8 0%, transparent 50%
-  );
-  border-radius: 50%;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .theme-switch-knob::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 6px var(--accent);
-}
-
-/* Knob hover (dark mode) */
-[data-theme="dark"] .theme-switch-knob:hover {
-  box-shadow:
-    0 6px 16px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* ==========================================================================
-   KNOB SLIDING ANIMATION
-   ========================================================================== */
-
-/* Light mode position - sun side (left) */
-[data-theme="light"] .theme-switch-knob {
-  transform: translateX(calc(var(--sw-w) - var(--sw-pad) - var(--sw-knob)));
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Dark mode position - moon side (right) */
-[data-theme="dark"] .theme-switch-knob {
-  transform: translateX(calc(var(--sw-w) - var(--sw-pad) - var(--sw-knob)));
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Transition state classes for custom animations */
-.theme-switch.transitioning-light {
-  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.theme-switch.transitioning-dark {
-  transition: background 500ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Reduced motion - disable transitions */
-@media (prefers-reduced-motion: reduce) {
-  .theme-switch {
-    transition: none !important;
-  }
-  .theme-switch-knob {
-    transition: none !important;
-  }
-  .theme-switch-sun,
-  .theme-switch-moon,
-  .theme-switch-stars,
-  .theme-switch-cloud {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ==========================================================================
-   ICON SUN / MOON - preserved from original for backward compatibility
-   ========================================================================== */
-
-/* Sun icon: positioned on the left in dark mode, right in light mode */
-.theme-switch-sun { left: var(--sw-pad); }
-/* Moon icon: positioned on the right in dark mode */
-.theme-switch-moon { right: var(--sw-pad); }
-
-/* Light mode sun - visible, coloured with accent, z-index 3 above knob, positioned on right */
-[data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); color: var(--accent); opacity: 1; z-index: 3; }
-/* Dark mode sun - hidden */
-[data-theme="dark"] .theme-switch-sun { color: var(--text-faint); opacity: 0; position: absolute; }
-/* Dark mode moon - visible */
-[data-theme="dark"] .theme-switch-moon { color: var(--text); opacity: 1; position: absolute; right: var(--sw-pad); }
-/* Light mode moon - hidden */
-[data-theme="light"] .theme-switch-moon { color: var(--text-faint); opacity: 0; position: absolute; right: var(--sw-pad); }
-
-/* Knob z-index */
-.theme-switch-knob { z-index: 2; }
-
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-
-@media (max-width: 420px) {
-  .theme-switch { --sw-w: 60px; --sw-h: 30px; --sw-knob: 26px; }
-}
-
 @media (max-width: 600px) {
-  .theme-switch { --sw-w: 56px; --sw-h: 28px; --sw-knob: 24px; }
+  
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .theme-switch, .theme-switch-knob, .theme-switch-icon { transition: none; }
+  
 }
 
 .header-cta { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
