@@ -554,7 +554,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 /* Sun icon: positioned on the left in dark mode, right in light mode */
 .theme-switch-sun { left: var(--sw-pad); }
-[data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); }
+[data-theme="light"] .theme-switch-sun { left: auto; right: var(--sw-pad); z-index: 3; }
 /* Moon icon: positioned on the right in dark mode */
 .theme-switch-moon { right: var(--sw-pad); }
 
