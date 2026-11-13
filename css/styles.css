@@ -568,6 +568,36 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
 .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
+.nav-mobile-header { display: flex; align-items: center; gap: var(--space-3); }
+
+.theme-toggle-mobile {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+              background-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.theme-toggle-mobile:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface);
+  transform: rotate(-10deg);
+}
+
+/* Show the icon for the theme you would switch TO */
+[data-theme="dark"] .theme-toggle-mobile .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle-mobile .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle-mobile .icon-sun { display: none; }
+[data-theme="light"] .theme-toggle-mobile .icon-moon { display: block; }
+
+.btn-primary { width: 100%; }
+
 .nav-mobile-actions { display: none; }
 
 /* ==========================================================================
@@ -1767,7 +1797,17 @@ button { font: inherit; color: inherit; cursor: pointer; }
   }
   .nav-link::after { display: none; }
   .nav-link.is-active { color: var(--accent); }
-  .nav-mobile-actions { display: block; margin-top: var(--space-5); }
+  .nav-mobile-header { display: block; margin-top: var(--space-5); }
+
+/* Mobile nav toggle btn inside the panel - space on left of close btn */
+.nav-mobile-header .theme-toggle-mobile { margin-right: auto; }
+
+/* Let's Talk button inside mobile nav panel */
+.nav-mobile-header .btn-primary { margin-top: 1rem; width: 100%; border-radius: var(--radius); }
+
+/* State when nav is open - theme toggle stays visible */
+.nav.is-open .nav-mobile-header { align-items: flex-start; padding: var(--space-3) 0; }
+
 
   body.nav-open { overflow: hidden; }
 

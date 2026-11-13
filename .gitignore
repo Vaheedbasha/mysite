@@ -17,3 +17,4 @@ Thumbs.db
 # Dependencies (none needed for this project, kept for safety)
 node_modules/
 vendor/
+/freebuff-sites-build/

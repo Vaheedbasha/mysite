@@ -265,21 +265,47 @@
      ====================================================================== */
   function initTheme() {
     var toggle = $("#theme-toggle");
-    if (!toggle) return;
+    var mobileToggle = $(".theme-toggle-mobile");
+    if (!toggle && !mobileToggle) return;
+
+    function setTheme(dark) {
+      var next = dark ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) { /* storage blocked */ }
+      updateButtonLabels(dark);
+    }
+
+    function updateButtonLabels(isDark) {
+      if (toggle) {
+        toggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        toggle.setAttribute("aria-pressed", isDark ? "false" : "true");
+      }
+      if (mobileToggle) {
+        mobileToggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        mobileToggle.setAttribute("aria-pressed", isDark ? "false" : "true");
+      }
+    }
 
     function label() {
       var isDark = root.getAttribute("data-theme") === "dark";
-      toggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
-      toggle.setAttribute("aria-pressed", isDark ? "false" : "true");
+      updateButtonLabels(isDark);
     }
     label();
 
-    toggle.addEventListener("click", function () {
-      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) { /* storage blocked */ }
-      label();
-    });
+    if (toggle) {
+      toggle.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) { /* storage blocked */ }
+        label();
+      });
+    }
+    if (mobileToggle) {
+      mobileToggle.addEventListener("click", function () {
+        var isDark = root.getAttribute("data-theme") !== "dark";
+        setTheme(isDark);
+      });
+    }
   }
 
   /* ======================================================================
