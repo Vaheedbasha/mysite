@@ -500,9 +500,13 @@
       cx += (tx - cx) * 0.12;
       cy += (ty - cy) * 0.12;
       layer.style.transform =
-        "perspective(1100px) rotateY(" + (cx * 5).toFixed(2) + "deg)" +
-        " rotateX(" + (-cy * 4).toFixed(2) + "deg)" +
-        " translate3d(" + (cx * 8).toFixed(2) + "px," + (cy * 6).toFixed(2) + "px,0)";
+        "perspective(1100px) rotateY(" + (cx * 4).toFixed(2) + "deg)" +
+        " rotateX(" + (-cy * 3.2).toFixed(2) + "deg)" +
+        " translate3d(" + (cx * 6).toFixed(2) + "px," + (cy * 5).toFixed(2) + "px,0)";
+      var haze = $(".hero-haze");
+      if (haze) {
+        haze.style.transform = "translate3d(" + (cx * 22).toFixed(1) + "px," + (cy * 18).toFixed(1) + "px,0)";
+      }
       if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
         raf = window.requestAnimationFrame(apply);
       }
@@ -537,14 +541,17 @@
       var start = null;
       var duration = 1100;
 
+      var pad = el.getAttribute("data-pad") === "true";
+
       function step(now) {
         if (start === null) start = now;
         var progress = Math.min((now - start) / duration, 1);
         // ease-out for a soft landing
         var eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.round(target * eased);
+        var val = Math.round(target * eased);
+        el.textContent = pad && val < 10 ? "0" + val : String(val);
         if (progress < 1) window.requestAnimationFrame(step);
-        else el.textContent = target;
+        else el.textContent = pad && target < 10 ? "0" + target : String(target);
       }
       window.requestAnimationFrame(step);
     }
