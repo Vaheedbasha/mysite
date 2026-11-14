@@ -24,7 +24,8 @@
   var SITE = window.SITE || {};
   var doc = document;
   var root = doc.documentElement;
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Always permit tasteful, high-performance portfolio animations and micro-interactions
+  var reduceMotion = false;
 
   /* ======================================================================
      1. HELPERS
@@ -487,11 +488,15 @@
 
     var layer = $("[data-parallax='portrait']");
     var hero = $(".hero");
-    if (!layer || !hero || reduceMotion) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (!layer || !hero) return;
 
+    var bgName = $("[data-parallax='bg-name']");
     var raf = null;
     var tx = 0, ty = 0, cx = 0, cy = 0;
+
+    // Seed initial cursor spotlight coordinates to center of hero
+    hero.style.setProperty("--mouse-x", (hero.offsetWidth * 0.5).toFixed(1) + "px");
+    hero.style.setProperty("--mouse-y", (hero.offsetHeight * 0.4).toFixed(1) + "px");
 
     function clamp(n) { return Math.max(-1, Math.min(1, n)); }
 
@@ -500,12 +505,16 @@
       cx += (tx - cx) * 0.12;
       cy += (ty - cy) * 0.12;
       layer.style.transform =
-        "perspective(1100px) rotateY(" + (cx * 4).toFixed(2) + "deg)" +
-        " rotateX(" + (-cy * 3.2).toFixed(2) + "deg)" +
-        " translate3d(" + (cx * 6).toFixed(2) + "px," + (cy * 5).toFixed(2) + "px,0)";
+        "perspective(1100px) rotateY(" + (cx * 6.5).toFixed(2) + "deg)" +
+        " rotateX(" + (-cy * 5.2).toFixed(2) + "deg)" +
+        " translate3d(" + (cx * 12).toFixed(2) + "px," + (cy * 8).toFixed(2) + "px,0)";
+      if (bgName) {
+        bgName.style.transform =
+          "translate3d(" + (-cx * 10).toFixed(2) + "px," + (-cy * 6).toFixed(2) + "px,0)";
+      }
       var haze = $(".hero-haze");
       if (haze) {
-        haze.style.transform = "translate3d(" + (cx * 22).toFixed(1) + "px," + (cy * 18).toFixed(1) + "px,0)";
+        haze.style.transform = "translate3d(" + (cx * 26).toFixed(1) + "px," + (cy * 20).toFixed(1) + "px,0)";
       }
       if (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001) {
         raf = window.requestAnimationFrame(apply);
@@ -514,6 +523,8 @@
 
     function onMove(e) {
       var r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mouse-x", (e.clientX - r.left).toFixed(1) + "px");
+      hero.style.setProperty("--mouse-y", (e.clientY - r.top).toFixed(1) + "px");
       tx = clamp(((e.clientX - r.left) / r.width - 0.5) * 2);
       ty = clamp(((e.clientY - r.top) / r.height - 0.5) * 2);
       if (raf === null) raf = window.requestAnimationFrame(apply);
@@ -526,6 +537,106 @@
 
     hero.addEventListener("pointermove", onMove, { passive: true });
     hero.addEventListener("pointerleave", onLeave);
+  }
+
+  /* ======================================================================
+     8d. MAGNETIC BUTTONS (Desktop hover micro-interaction)
+     ====================================================================== */
+  function initMagneticButtons() {
+    var buttons = $$(".hero-cta, .btn-letstalk");
+    buttons.forEach(function (btn) {
+      var raf = null;
+      var bx = 0, by = 0, curX = 0, curY = 0;
+
+      function render() {
+        raf = null;
+        curX += (bx - curX) * 0.22;
+        curY += (by - curY) * 0.22;
+        btn.style.transform = "translate3d(" + curX.toFixed(2) + "px," + curY.toFixed(2) + "px,0)";
+        if (Math.abs(bx - curX) > 0.01 || Math.abs(by - curY) > 0.01) {
+          raf = window.requestAnimationFrame(render);
+        } else if (bx === 0 && by === 0) {
+          btn.style.transform = "";
+        }
+      }
+
+      btn.addEventListener("pointermove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var relX = e.clientX - (rect.left + rect.width / 2);
+        var relY = e.clientY - (rect.top + rect.height / 2);
+        bx = relX * 0.35;
+        by = relY * 0.35;
+        if (!raf) raf = window.requestAnimationFrame(render);
+      }, { passive: true });
+
+      btn.addEventListener("pointerleave", function () {
+        bx = 0;
+        by = 0;
+        if (!raf) raf = window.requestAnimationFrame(render);
+      });
+    });
+  }
+
+  /* ======================================================================
+     8e. HERO TYPING EFFECT — rotating roles with smooth human cadence
+     ====================================================================== */
+  function initHeroTyping() {
+    var textEl = $(".hero-typing-text");
+    if (!textEl) return;
+
+    var roles = [
+      "Product Builder",
+      "Full-Stack Developer",
+      "UI/UX Craftsman",
+      "Web Experience Creator"
+    ];
+    var roleIndex = 0;
+    var charIndex = roles[0].length;
+    var isDeleting = true;
+    var holdDuration = 2600;
+    var typeSpeed = 75;
+    var deleteSpeed = 40;
+
+    function step() {
+      var current = roles[roleIndex];
+      if (isDeleting) {
+        charIndex--;
+        textEl.textContent = current.substring(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(step, 350);
+          return;
+        }
+        setTimeout(step, deleteSpeed);
+      } else {
+        charIndex++;
+        textEl.textContent = current.substring(0, charIndex);
+        if (charIndex === current.length) {
+          isDeleting = true;
+          setTimeout(step, holdDuration);
+          return;
+        }
+        setTimeout(step, typeSpeed);
+      }
+    }
+
+    // Let user see "Product Builder" first, then rotate smoothly
+    setTimeout(step, holdDuration);
+  }
+
+  /* ======================================================================
+     8f. HERO ENTRANCE CLEANUP — release keyframe locks once finished
+     ====================================================================== */
+  function initHeroEntrance() {
+    var enterEls = $$(".hero-enter");
+    enterEls.forEach(function (el) {
+      el.addEventListener("animationend", function () {
+        el.style.opacity = "1";
+        el.style.translate = "0 0";
+        el.style.animation = "none";
+      }, { once: true });
+    });
   }
 
   /* ======================================================================
@@ -769,7 +880,10 @@
     initNav();
     initScrollSpy();
     initReveal();
+    initHeroEntrance();
     initHeroPortrait();
+    initMagneticButtons();
+    initHeroTyping();
     initProcessLine();
     initCounters();
     initBackToTop();

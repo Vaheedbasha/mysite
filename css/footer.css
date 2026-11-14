@@ -70,22 +70,60 @@
    16. ANIMATION, MOTION PREFERENCES, RESPONSIVE
    ========================================================================== */
 
-/* Hero entrance — only when JS is available */
+/* Coordinated Staggered Hero entrance — only when JS is available */
 .js .hero-enter {
   opacity: 0;
-  transform: translateY(14px);
-  animation: heroIn 0.7s var(--ease) forwards;
+  translate: 0 22px;
+  animation: heroIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.js .hero-enter[data-delay="0"] { animation-delay: 0.04s; }
-.js .hero-enter[data-delay="1"] { animation-delay: 0.1s; }
-.js .hero-enter[data-delay="2"] { animation-delay: 0.16s; }
-.js .hero-enter[data-delay="3"] { animation-delay: 0.22s; }
-.js .hero-enter[data-delay="4"] { animation-delay: 0.28s; }
-.js .hero-enter[data-delay="5"] { animation-delay: 0.34s; }
-.js .hero-enter[data-delay="6"] { animation-delay: 0.40s; }
-.js .hero-enter[data-delay="7"] { animation-delay: 0.46s; }
+.js .hero-enter[data-delay="0"] { animation-delay: 0.05s; }
+.js .hero-enter[data-delay="1"] { animation-delay: 0.12s; }
+.js .hero-enter[data-delay="2"] { animation-delay: 0.22s; }
+.js .hero-enter[data-delay="3"] { animation-delay: 0.32s; }
+.js .hero-enter[data-delay="4"] { animation-delay: 0.42s; }
+.js .hero-enter[data-delay="5"] { animation-delay: 0.52s; }
+
 @keyframes heroIn {
-  to { opacity: 1; transform: none; }
+  0% {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Dedicated bloom entrance for the backdrop name */
+.js .hero-bg-name.hero-enter {
+  opacity: 0;
+  animation: nameBloomIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes nameBloomIn {
+  0% {
+    opacity: 0;
+    translate: 0 16px;
+    filter: blur(8px);
+  }
+  50% {
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0.96;
+    translate: 0 0;
+    filter: blur(0px);
+  }
+}
+
+/* Magnetic button smooth return physics */
+.hero-cta {
+  will-change: transform;
+  transition: box-shadow var(--dur) var(--ease),
+              background-color var(--dur) var(--ease),
+              color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
 }
 
 /* Scroll reveal — content stays visible unless .js is present.
@@ -104,24 +142,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .hero-enter,
-  .js .reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    translate: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
-  .pulse-dot { animation: none !important; }
-  .process-list::after { transform: scaleX(1) !important; transition: none !important; }
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-  .proj:hover, .service:hover, .quote-card:hover,
-  .btn-primary:hover, .contact-btn:hover { transform: none; }
-  .shot img { filter: none; }
 }
 
 /* ---- ≤1024px: non-hero layout fixes ---- */
