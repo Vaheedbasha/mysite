@@ -41,11 +41,12 @@
 <!-- Fonts: preconnect, then a single swap-enabled stylesheet -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@800&family=Syne:wght@700;800;900&family=Unbounded:wght@800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/main.css?v=6">
-<link rel="stylesheet" href="css/header.css?v=6">
-<link rel="stylesheet" href="css/footer.css?v=6">
+<link rel="stylesheet" href="css/main.css?v=16">
+<link rel="stylesheet" href="css/header.css?v=16">
+<link rel="stylesheet" href="css/footer.css?v=16">
 
 <!-- Set the theme before first paint so there is no flash of the wrong theme. -->
 <script>
@@ -163,39 +164,36 @@
 <main id="main">
 
   <!-- ============================ HERO ============================ -->
-  <section class="hero" id="top">
+  <section class="hero hero-editorial" id="top">
     <div class="hero-atmos" aria-hidden="true">
       <span class="hero-haze"></span>
       <span class="hero-haze hero-haze-b"></span>
     </div>
 
     <div class="container hero-stage">
-      <!-- Left: personal identity -->
+      <!-- Left: personal identity & CTAs -->
       <div class="hero-identity">
-        <p class="badge availability hero-enter" data-delay="0">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          <span data-site="availability">Open for projects · replies within 24h</span>
-        </p>
-
-        <p class="hero-eyebrow hero-enter" data-delay="1">Hello, I'm</p>
-
-        <h1 class="hero-name hero-enter" data-delay="2">
-          <span class="hero-name-line"><span class="hero-name-first">VAHEED</span></span>
-          <span class="hero-name-line"><em class="hero-name-last">Basha.</em></span>
+        <h1 class="hero-name-title hero-enter" data-delay="1">
+          Independent Web Developer &amp; <span class="text-accent">Product Builder</span>
         </h1>
 
-        <p class="hero-role hero-enter" data-delay="5">
-          <span>Independent Web Developer</span>
-          <span>Product Builder</span>
-        </p>
-
-        <p class="hero-tagline hero-enter" data-delay="6">
+        <p class="hero-tagline hero-enter" data-delay="2">
           Building digital experiences with clarity, craft and purpose.
         </p>
+
+        <div class="hero-actions hero-enter" data-delay="3">
+          <a class="btn btn-primary hero-cta" href="#work">Explore Work</a>
+        </div>
       </div>
 
-      <!-- Centre: portrait, the focal point -->
-      <figure class="hero-portrait hero-enter" data-delay="4">
+      <!-- Centre: portrait, the focal point with big name directly behind him on desktop -->
+      <figure class="hero-portrait hero-enter" data-delay="2">
+        <div class="hero-bg-name" aria-hidden="true">
+          <span class="bg-name-solid">
+            <span class="bg-part-first">VAHEED</span>
+            <span class="bg-part-last">BASHA</span>
+          </span>
+        </div>
         <span class="portrait-aura" aria-hidden="true"></span>
         <span class="portrait-frame" data-parallax="portrait">
           <img class="portrait-img" src="images/portrait_image.webp"
@@ -204,28 +202,19 @@
                decoding="async" fetchpriority="high">
           <span class="portrait-fallback" aria-hidden="true"><span>VB</span></span>
         </span>
+        <!-- Mobile Name (below portrait on mobile) -->
+        <div class="hero-mobile-name" aria-hidden="true">
+          <span class="mobile-name-text">VAHEED BASHA</span>
+        </div>
       </figure>
 
-      <!-- Right: introduction -->
+      <!-- Right: introduction & social proof -->
       <div class="hero-pitch">
-        <p class="hero-pitch-title hero-enter" data-delay="4">Turning ideas into polished digital experiences.</p>
-
-        <p class="hero-lead hero-enter" data-delay="5">
+        <p class="hero-lead hero-enter" data-delay="3">
           I design and develop responsive business websites and practical web applications that help businesses establish their online presence and operate more effectively.
         </p>
 
-        <div class="hero-actions hero-enter" data-delay="6">
-          <a class="btn btn-primary hero-cta" href="#work">
-            Explore My Work
-            <span class="hero-cta-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="btn btn-secondary hero-cta" href="#contact">
-            Let's Talk
-            <span class="hero-cta-arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <div class="hero-social hero-enter" data-delay="7">
+        <div class="hero-social hero-enter" data-delay="4">
           <span class="hero-social-label">Find me on</span>
           <div class="hero-social-links">
             <a class="social-link social-link-linkedin" href="https://www.linkedin.com/in/vaheed-basha/" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn" aria-label="Vaheed Basha on LinkedIn">
@@ -237,13 +226,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Minimal animated scroll indicator -->
-    <div class="hero-scroll-cue hero-enter" data-delay="7" aria-hidden="true">
-      <a href="#work" class="hero-scroll-indicator" aria-label="Scroll to work">
-        <span class="scroll-pill"><span class="scroll-dot"></span></span>
-      </a>
     </div>
 
     <!-- Statistics bar: counted project inventory -->
