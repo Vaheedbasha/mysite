@@ -19,8 +19,8 @@
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);            // 587 = STARTTLS, 465 = SSL
 define('SMTP_SECURE', 'tls');        // 'tls' for port 587, 'ssl' for port 465
-define('SMTP_USER', 'your.address@gmail.com');
-define('SMTP_PASS', 'your-16-character-app-password');
+define('SMTP_USER', 'vaheedbasha544@gmail.com');
+define('SMTP_PASS', 'ssay zkpi fkfm zjhx');
 
 // --- Who receives the enquiry ---------------------------------------------
 define('MAIL_TO', 'vaheedbasha882@gmail.com');   // where enquiries land

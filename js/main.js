@@ -108,33 +108,52 @@
     return "images/projects/" + project.slug + ".webp";
   }
 
-  /* One card design for everything: live sites and demos. */
-  function renderCard(project, extra) {
-    var isDemo = project.kind === "demo";
-    var badge = isDemo
-      ? '<span class="shot-badge">' + esc(project.badge || "Demo build") + "</span>"
-      : '<span class="shot-badge shot-badge-live"><span class="pulse-dot" aria-hidden="true"></span>Live</span>';
-    var linkText = isDemo ? (project.linkLabel || "Open demo") : "Visit live site";
+  function getBadgeHtml(project) {
+    if (project.isArchived || project.kind === "previous" || project.type === "archived") {
+      return '<span class="shot-badge shot-badge-archived">Archived</span>';
+    }
+    if ((project.badge && project.badge.toLowerCase().indexOf("development") !== -1) || project.type === "ongoing") {
+      return '<span class="shot-badge shot-badge-ongoing"><span class="pulse-dot pulse-amber" aria-hidden="true"></span>In Progress</span>';
+    }
+    if (project.kind === "demo" || project.type === "app") {
+      return '<span class="shot-badge shot-badge-demo">Demo</span>';
+    }
+    return '<span class="shot-badge shot-badge-live"><span class="pulse-dot" aria-hidden="true"></span>Live</span>';
+  }
 
-    return '<article class="proj' + (extra ? " is-extra" : " reveal") + '">' +
+  /* One card design for everything: live sites, demos, ongoing builds, and archives. */
+  function renderCard(project) {
+    var badge = getBadgeHtml(project);
+    var filterGroup = project.type || (project.kind === "demo" ? "app" : (project.isArchived ? "archived" : "live"));
+    var linkBtn = "";
+    if (project.isArchived) {
+      linkBtn = '<span class="btn btn-ghost proj-link is-archived" title="Domain retired by client">' +
+        esc(project.linkLabel || "Domain Expired") +
+        '<span class="archived-tag" aria-hidden="true">Archived</span></span>';
+    } else {
+      var linkText = project.linkLabel || (project.type === "app" ? "Open web app" : (project.type === "ongoing" ? "Preview build" : "Visit site"));
+      linkBtn = '<a class="btn btn-ghost proj-link" href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer">' +
+        esc(linkText) + arrowSvg + '</a>';
+    }
+
+    var imgMarkup = project.isArchived
+      ? ""
+      : '<img src="' + esc(imgPath(project)) + '" alt="' + esc(project.imageAlt || project.name) + '"' +
+          ' width="1600" height="1000" loading="lazy" decoding="async"' + IMG_FALLBACK + '>';
+
+    return '<article class="proj reveal" data-filter-group="' + esc(filterGroup) + '">' +
       '<div class="shot">' + badge +
-        '<div class="shot-fallback" aria-hidden="true">' +
-          '<span class="shot-frame-bar"><i></i><i></i><i></i></span>' +
-          '<span class="shot-fallback-name">' + esc(project.name) + "</span>" +
-          '<span class="shot-fallback-note">Screenshot coming soon</span>' +
-        "</div>" +
-        '<img src="' + esc(imgPath(project)) + '" alt="' + esc(project.imageAlt || project.name) + '"' +
-          ' width="1600" height="1000" loading="lazy" decoding="async"' + IMG_FALLBACK + ">" +
-      "</div>" +
+        imgMarkup +
+      '</div>' +
       '<div class="proj-body">' +
-        "<h3>" + esc(project.name) + "</h3>" +
-        "<p>" + esc(project.description) + "</p>" +
-        techRow(project.tags) +
-        '<a class="btn btn-ghost proj-link" href="' + esc(project.url) + '" target="_blank" rel="noopener noreferrer">' +
-          esc(linkText) + arrowSvg +
-        "</a>" +
-      "</div>" +
-    "</article>";
+        '<div class="proj-meta">' +
+          '<span class="proj-category">' + esc(project.category || "Relocation Platform") + '</span>' +
+        '</div>' +
+        '<h3>' + esc(project.name) + '</h3>' +
+        '<p>' + esc(project.description) + '</p>' +
+        linkBtn +
+      '</div>' +
+    '</article>';
   }
 
   function initials(name) {
@@ -155,20 +174,33 @@
       'stroke-linecap="round" stroke-linejoin="round">' + paths + "</svg></span>";
   }
 
-  function renderService(service) {
+  function renderService(service, index) {
+    var num = "0" + ((index || 0) + 1) + " / 04";
+    var pills = (service.bullets || []).map(function (b) {
+      return '<span class="service-pill">' + esc(b) + "</span>";
+    }).join("");
     return '<article class="service reveal">' +
-      serviceIcon(service.icon) +
-      "<h3>" + esc(service.title) + "</h3>" +
-      "<p>" + esc(service.description) + "</p>" +
-      '<ul class="bullet-list">' +
-        (service.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") +
-      "</ul>" +
+      '<div class="service-top">' +
+        '<span class="service-index">' + num + '</span>' +
+        serviceIcon(service.icon) +
+      '</div>' +
+      '<div class="service-body">' +
+        "<h3>" + esc(service.title) + "</h3>" +
+        "<p>" + esc(service.description) + "</p>" +
+        '<div class="service-tags">' + pills + '</div>' +
+      '</div>' +
+      '<div class="service-footer">' +
+        '<a class="service-action-link" href="#contact">Discuss this service' + arrowSvg + '</a>' +
+      '</div>' +
     "</article>";
   }
 
   function renderProcessStep(step, index) {
     return '<li class="process-step reveal">' +
       '<span class="process-index">0' + (index + 1) + "</span>" +
+      '<div class="process-step-header">' +
+        '<span class="process-phase-tag">Phase 0' + (index + 1) + "</span>" +
+      '</div>' +
       "<h3>" + esc(step.title) + "</h3>" +
       "<p>" + esc(step.text) + "</p>" +
     "</li>";
@@ -186,32 +218,27 @@
   }
 
   function renderAll() {
-    var projects = Array.isArray(SITE.projects) ? SITE.projects : [];
-    if (projects.length) {
-      var live = projects.filter(function (p) { return p.kind !== "demo"; });
-      var demos = projects.filter(function (p) { return p.kind === "demo"; });
-
-      var liveBox = $("#work-live");
-      if (liveBox && live.length) {
-        liveBox.innerHTML = live.map(function (p, i) {
-          return renderCard(p, i >= VISIBLE_LIVE);
-        }).join("");
-      }
-
-      var demoBox = $("#work-demos");
-      if (demoBox && demos.length) {
-        demoBox.innerHTML = demos.map(function (p) { return renderCard(p, false); }).join("");
+    // Only populate if containers are empty (preserves full semantic HTML in index.html)
+    var unifiedGrid = $("#work-grid");
+    if (unifiedGrid && !unifiedGrid.children.length) {
+      var projects = Array.isArray(SITE.projects) ? SITE.projects : [];
+      if (projects.length) {
+        unifiedGrid.innerHTML = projects.map(renderCard).join("");
       }
     }
 
     var servicesBox = $("#services-grid");
-    if (servicesBox && Array.isArray(SITE.services) && SITE.services.length) {
-      servicesBox.innerHTML = SITE.services.map(renderService).join("");
+    if (servicesBox && !servicesBox.children.length) {
+      if (Array.isArray(SITE.services) && SITE.services.length) {
+        servicesBox.innerHTML = SITE.services.map(renderService).join("");
+      }
     }
 
     var processBox = $("#process-list");
-    if (processBox && Array.isArray(SITE.process) && SITE.process.length) {
-      processBox.innerHTML = SITE.process.map(renderProcessStep).join("");
+    if (processBox && !processBox.children.length) {
+      if (Array.isArray(SITE.process) && SITE.process.length) {
+        processBox.innerHTML = SITE.process.map(renderProcessStep).join("");
+      }
     }
 
     var testimonialsSection = $("#testimonials");
@@ -219,7 +246,7 @@
     if (testimonialsSection) {
       if (SITE.SHOW_TESTIMONIALS === false) {
         testimonialsSection.hidden = true; // section can be turned off entirely
-      } else if (testimonialsBox && Array.isArray(SITE.testimonials) && SITE.testimonials.length) {
+      } else if (testimonialsBox && !testimonialsBox.children.length && Array.isArray(SITE.testimonials) && SITE.testimonials.length) {
         testimonialsBox.innerHTML = SITE.testimonials.map(renderTestimonial).join("");
       }
     }
@@ -275,6 +302,8 @@
     toggle.addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
+      var meta = $("meta[name='color-scheme']");
+      if (meta) meta.setAttribute("content", next);
       try { localStorage.setItem("theme", next); } catch (e) { /* storage blocked */ }
       label();
     });
@@ -473,18 +502,19 @@
     var img = $(".portrait-img");
     if (!figure || !img) return;
 
-    // Optimised WebP first, the uploaded PNG next, themed fallback last.
     function onError() {
       var fallback = img.getAttribute("data-fallback");
       if (fallback && img.getAttribute("src") !== fallback) {
         img.setAttribute("src", fallback);
-        return;
+      } else {
+        figure.classList.add("no-portrait");
       }
-      figure.classList.add("no-portrait");
     }
 
     img.addEventListener("error", onError);
-    if (img.complete && img.naturalWidth === 0) onError();
+    img.addEventListener("load", function () {
+      figure.classList.remove("no-portrait");
+    });
 
     var layer = $("[data-parallax='portrait']");
     var hero = $(".hero");
@@ -537,6 +567,20 @@
 
     hero.addEventListener("pointermove", onMove, { passive: true });
     hero.addEventListener("pointerleave", onLeave);
+
+    // Pause hero ambient animations when scrolled out of view (baseline-ui performance)
+    if ("IntersectionObserver" in window) {
+      var heroObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            hero.classList.remove("is-offscreen");
+          } else {
+            hero.classList.add("is-offscreen");
+          }
+        });
+      }, { threshold: 0 });
+      heroObs.observe(hero);
+    }
   }
 
   /* ======================================================================
@@ -585,10 +629,10 @@
     if (!textEl) return;
 
     var roles = [
-      "Product Builder",
+      "Web Experience Creator",
       "Full-Stack Developer",
-      "UI/UX Craftsman",
-      "Web Experience Creator"
+      "Product Builder",
+      "UI/UX Craftsman"
     ];
     var roleIndex = 0;
     var charIndex = roles[0].length;
@@ -683,8 +727,39 @@
   }
 
   /* ======================================================================
-     10. EXPAND LIVE SITES
+     10. EXPAND LIVE SITES & CATEGORY FILTERING
      ====================================================================== */
+  function initWorkFilter() {
+    var pills = $$(".filter-pill");
+    var grid = $("#work-grid");
+    if (!pills.length || !grid) return;
+
+    pills.forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        var filter = pill.getAttribute("data-filter");
+        pills.forEach(function (p) {
+          p.classList.remove("is-active");
+          p.setAttribute("aria-selected", "false");
+        });
+        pill.classList.add("is-active");
+        pill.setAttribute("aria-selected", "true");
+
+        var cards = $$(".proj", grid);
+        cards.forEach(function (card) {
+          var group = card.getAttribute("data-filter-group");
+          var match = (filter === "all") || (group === filter);
+          if (match) {
+            card.classList.remove("is-filtered-out");
+            card.style.display = "";
+          } else {
+            card.classList.add("is-filtered-out");
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  }
+
   function initWorkToggle() {
     var btn = $("#work-toggle");
     var grid = $("#work-live");
@@ -873,6 +948,7 @@
      ====================================================================== */
   function init() {
     renderAll();
+    initWorkFilter();
     initWorkToggle();
     applyContactDetails();
     initTheme();

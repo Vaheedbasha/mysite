@@ -24,23 +24,24 @@ window.SITE = {
   // false -> normal indexing at launch. Also edit robots.txt (see README).
   NOINDEX_UNTIL_LAUNCH: true,
 
-  SHOW_TESTIMONIALS: true, // false hides the whole testimonials section
-  SHOW_SAMPLE_BADGE: true, // false hides the "Sample" badge on placeholder quotes
+  SHOW_TESTIMONIALS: false, // Hidden: only genuine client feedback, no sample placeholders
+  SHOW_SAMPLE_BADGE: false,
 
   /* ---------------------------------------------------------------------
      2. Identity and contact details
      --------------------------------------------------------------------- */
   name: "Vaheed Basha",
-  title: "Independent Web Developer · Product Builder",
-  role: "Independent Web Developer",
+  title: "Web Developer & Product Builder",
+  role: "Web Developer & Product Builder",
   email: "vaheedbasha882@gmail.com",
   phone: "9550926882",
   phoneInternational: "919550926882",
   whatsapp: "919550926882",
   whatsappText: "Hi Vaheed, I'd like to discuss a website project.",
   linkedin: "https://www.linkedin.com/in/vaheed-basha/",
+  github: "https://github.com/Vaheedbasha",
   location: "India",
-  availability: "Open for projects · replies within 24h",
+  availability: "Available for new projects in 2026",
 
   /* ---------------------------------------------------------------------
      3. Projects
@@ -52,7 +53,7 @@ window.SITE = {
     {
       slug: "urban-club",
       kind: "featured",
-      type: "business",
+      type: "live",
       name: "Urban Club Relocation",
       url: "https://urbanclubpackersandmovers.in/",
       category: "Business Website",
@@ -74,7 +75,7 @@ window.SITE = {
     {
       slug: "move-express",
       kind: "featured",
-      type: "business",
+      type: "live",
       name: "Move Express Packers",
       url: "https://movexpresspacker.in/",
       category: "Business Website",
@@ -96,7 +97,7 @@ window.SITE = {
     {
       slug: "trust-line",
       kind: "featured",
-      type: "business",
+      type: "live",
       name: "Trust Line Cargo",
       url: "https://trustlinecargopackersandmovers.in/",
       category: "Business Website",
@@ -118,7 +119,7 @@ window.SITE = {
     {
       slug: "cool-logistics",
       kind: "more",
-      type: "business",
+      type: "live",
       name: "Cool Logistics",
       url: "https://coollogisticspackers.in/",
       category: "Business Website",
@@ -130,7 +131,7 @@ window.SITE = {
     {
       slug: "shiftezy",
       kind: "more",
-      type: "business",
+      type: "live",
       name: "ShiftEzy",
       url: "https://shiftezy.in/",
       category: "Business Website",
@@ -142,7 +143,7 @@ window.SITE = {
     {
       slug: "shiv-transport",
       kind: "more",
-      type: "business",
+      type: "live",
       name: "Shiv Transport",
       url: "https://www.shivtransportpackers.in/",
       category: "Business Website",
@@ -182,11 +183,11 @@ window.SITE = {
     {
       slug: "easy-shift",
       kind: "demo",
-      type: "business",
+      type: "ongoing",
       name: "Easy Shift Relocations",
       url: "https://darkred-albatross-330697.hostingersite.com/",
       category: "Business Website",
-      badge: "Delivered · launching soon",
+      badge: "Ongoing · Launching soon",
       linkLabel: "Preview",
       description:
         "A packers and movers website delivered to the business owner, currently waiting on its own domain before going live.",
@@ -201,42 +202,50 @@ window.SITE = {
   services: [
     {
       icon: "monitor",
-      title: "Business Websites",
-      description: "A fast, credible website that answers the questions customers ask before they call.",
+      title: "High-Converting Websites",
+      description: "Fast, mobile-first commercial platforms designed to turn visitors into phone calls, WhatsApp inquiries, and confirmed bookings.",
       bullets: [
-        "Responsive, SEO-ready page structure",
-        "Service pages written around real enquiries",
-        "Hosting, domain and launch handled",
-      ],
-    },
-    {
-      icon: "layout",
-      title: "UI/UX & Design",
-      description: "Clean, familiar interfaces that look good and are easy to use on any screen.",
-      bullets: [
-        "Mobile-first layouts and readable type",
-        "Clear hierarchy, spacing and contrast",
-        "A small, reusable style system",
+        "Mobile-First UX",
+        "Fast Page Load",
+        "Lead & WhatsApp CTAs",
+        "Local SEO Ready",
+        "Domain & SSL Setup"
       ],
     },
     {
       icon: "code",
-      title: "Web Applications",
-      description: "Custom PHP and MySQL tools that replace spreadsheets and repeated manual work.",
+      title: "Custom Web Applications & Portals",
+      description: "Bespoke database-backed web applications that automate daily operational tasks, track client bookings, and replace messy spreadsheets.",
       bullets: [
-        "Admin dashboards, records and reports",
-        "Built around the way your team works",
-        "Clean data handling and exports",
+        "PHP & MySQL",
+        "Admin Dashboards",
+        "Role-Based Auth",
+        "Record Management",
+        "Workflow Automation"
+      ],
+    },
+    {
+      icon: "layout",
+      title: "UI/UX & Mobile-First Architecture",
+      description: "Intuitive user interfaces built for modern touchscreens where over 80% of business visitors browse, featuring high-contrast typography and effortless flows.",
+      bullets: [
+        "Touch-Optimized",
+        "Accessible Hierarchy",
+        "Zero Bloat CSS",
+        "Frictionless Navigation",
+        "Cross-Device Tested"
       ],
     },
     {
       icon: "wrench",
-      title: "Maintenance & Support",
-      description: "Updates and fixes after launch, so the site keeps working while you run the business.",
+      title: "Performance, Technical SEO & Maintenance",
+      description: "Direct ongoing engineering support, Core Web Vitals performance tuning, and technical on-page SEO so your website consistently ranks and converts.",
       bullets: [
-        "Content changes and bug fixes",
-        "Backups and uptime checks",
-        "Plain-language help when you need it",
+        "Core Web Vitals 95+",
+        "Schema & Meta SEO",
+        "Speed Optimization",
+        "Uptime & Security",
+        "Direct Developer Access"
       ],
     },
   ],
@@ -245,11 +254,11 @@ window.SITE = {
      5. Process
      --------------------------------------------------------------------- */
   process: [
-    { title: "Discuss", text: "We talk through the business, the customers and what the site has to do." },
-    { title: "Design", text: "I map the pages and share a clean design for your feedback." },
-    { title: "Build", text: "I build it responsive, fast and SEO-ready, then test it on real phones." },
-    { title: "Launch", text: "Domain, hosting, forms and search setup are checked before it goes live." },
-    { title: "Support", text: "I stay reachable for fixes, updates and small changes after launch." },
+    { title: "Discovery & Strategy", text: "We analyze your business model, target clientele, and exact project requirements to define a focused roadmap." },
+    { title: "Architecture & UI", text: "I structure intuitive page hierarchies and produce a clear, mobile-optimized design for your review." },
+    { title: "Full-Stack Build", text: "I engineer clean, lightweight code using PHP, JavaScript, and MySQL—rigorously tested on real physical phones." },
+    { title: "Launch & SEO Setup", text: "Domain routing, SSL security, form delivery, and search engine metadata are verified before going live." },
+    { title: "Support & Evolution", text: "I remain directly reachable for technical updates, feature additions, and ongoing site maintenance." },
   ],
 
   /* ---------------------------------------------------------------------

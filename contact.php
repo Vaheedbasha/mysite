@@ -93,8 +93,8 @@ function render_html_page(bool $success, string $heading, string $body, int $sta
           border-radius:16px; padding:36px 28px; }
   h1 { font-size:1.4rem; margin:0 0 12px; letter-spacing:-0.03em; }
   p { margin:0 0 20px; color:#A3A3A3; line-height:1.65; }
-  a { color:#F5F5F5; font-weight:600; text-decoration:none; border-bottom:1px solid #3A3A3A; padding-bottom:2px; }
-  a:hover { border-color:#F5F5F5; }
+  a { color:#F5F5F5; font-weight:600; text-decoration:underline; text-decoration-color:#3A3A3A; text-underline-offset:3px; text-decoration-thickness:1px; }
+  a:hover { text-decoration-color:#F5F5F5; }
 </style>
 </head>
 <body>
