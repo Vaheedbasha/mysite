@@ -906,16 +906,24 @@
       if (labelEl) labelEl.textContent = "Sending";
       setStatus(""); // Keep clean: inline button spinner indicates loading, no redundant raw message below
 
-      var payload = new FormData(form);
-      payload.append("ajax", "1");
-      payload.append("elapsed", String(Date.now() - pageLoaded));
-      if (csrfToken) payload.append("csrf_token", csrfToken);
+      var formData = new FormData(form);
+      formData.append("ajax", "1");
+      formData.append("elapsed", String(Date.now() - pageLoaded));
+      if (csrfToken) formData.append("csrf_token", csrfToken);
 
-      fetch("contact.php", {
+      // URL-encoded body works across Vercel Node serverless and native PHP without multipart parsing issues
+      var payload = new URLSearchParams(formData);
+      var endpoint = window.location.hostname.includes("vercel.app") ? "/api/contact" : "contact.php";
+
+      fetch(endpoint, {
         method: "POST",
         body: payload,
         credentials: "same-origin",
-        headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" }
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "X-Requested-With": "XMLHttpRequest",
+          Accept: "application/json"
+        }
       })
         .then(function (response) {
           return response.text().then(function (text) {

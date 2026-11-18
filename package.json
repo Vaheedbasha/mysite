@@ -1,0 +1,9 @@
+{
+  "name": "vaheed-basha-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio website for Vaheed Basha",
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}
