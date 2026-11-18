@@ -904,7 +904,7 @@
       button.classList.add("is-loading");
       button.disabled = true;
       if (labelEl) labelEl.textContent = "Sending";
-      setStatus("Sending your message…");
+      setStatus(""); // Keep clean: inline button spinner indicates loading, no redundant raw message below
 
       var payload = new FormData(form);
       payload.append("elapsed", String(Date.now() - pageLoaded));
