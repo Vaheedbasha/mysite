@@ -22,6 +22,9 @@ ini_set('display_startup_errors', '0');
 ini_set('log_errors', '1');
 error_reporting(E_ALL);
 
+// Buffer all output so accidental warnings, BOMs or notices never corrupt JSON responses.
+ob_start();
+
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: same-origin');
 header('Cache-Control: no-store');
@@ -36,6 +39,9 @@ const MIN_ELAPSED = 2500; // ms; a human needs at least this long to type
  */
 function respond_json(int $status, array $payload): void
 {
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -63,6 +69,9 @@ register_shutdown_function(static function (): void {
 
 function wants_json(): bool
 {
+    if (isset($_POST['ajax']) || isset($_GET['csrf'])) {
+        return true;
+    }
     $xhr = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
     $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
     return strcasecmp($xhr, 'XMLHttpRequest') === 0 || stripos($accept, 'application/json') !== false;

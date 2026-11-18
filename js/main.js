@@ -907,6 +907,7 @@
       setStatus(""); // Keep clean: inline button spinner indicates loading, no redundant raw message below
 
       var payload = new FormData(form);
+      payload.append("ajax", "1");
       payload.append("elapsed", String(Date.now() - pageLoaded));
       if (csrfToken) payload.append("csrf_token", csrfToken);
 
@@ -917,10 +918,16 @@
         headers: { "X-Requested-With": "XMLHttpRequest", Accept: "application/json" }
       })
         .then(function (response) {
-          return response.json().catch(function () {
-            throw new Error("Unexpected response from the server.");
-          }).then(function (data) {
-            if (!response.ok || !data.ok) throw new Error(data.error || "The message could not be sent.");
+          return response.text().then(function (text) {
+            var data;
+            try {
+              data = JSON.parse(text);
+            } catch (err) {
+              throw new Error("Server temporarily unavailable. Please email or message via WhatsApp directly.");
+            }
+            if (!response.ok || !data.ok) {
+              throw new Error(data.error || "The message could not be sent.");
+            }
             return data;
           });
         })
